@@ -1,0 +1,407 @@
+[gd_scene format=3 uid="uid://c1eshrn5qw2od"]
+
+[ext_resource type="Script" uid="uid://cyji1yqlqsy4i" path="res://Scripts/HUD.gd" id="1_8f6vp"]
+[ext_resource type="FontFile" uid="uid://cuyigfdom0xgu" path="res://Assets/fonts/PixelOperator8-Bold.ttf" id="3_6fbih"]
+[ext_resource type="Theme" uid="uid://cc32agmbob0jw" path="res://Theme/main.tres" id="3_bjfho"]
+[ext_resource type="Texture2D" uid="uid://do13qgcg7xl0g" path="res://Assets/Sprites/power_up_jump_icon.png" id="4_36asn"]
+[ext_resource type="Texture2D" uid="uid://b4b5itt8fk28" path="res://Assets/Sprites/power_up_size_up_icon.png" id="4_t1xeu"]
+[ext_resource type="Texture2D" uid="uid://ct6iflf54sn0j" path="res://Assets/Sprites/power_up_run_icon.png" id="5_8jye8"]
+[ext_resource type="Texture2D" uid="uid://dfmd5k2e5r0nq" path="res://Assets/Sprites/power_up_size_down_icon.png" id="5_36asn"]
+[ext_resource type="Script" uid="uid://b703sodkhby6p" path="res://Scripts/button_feedback.gd" id="8_43w4t"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8jye8"]
+draw_center = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6fbih"]
+draw_center = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bjfho"]
+bg_color = Color(0, 0, 0, 0.39215687)
+border_width_left = 30
+border_width_right = 50
+border_color = Color(0, 0, 0, 0.39215687)
+border_blend = true
+corner_detail = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fccik"]
+bg_color = Color(0, 0, 0, 0.39215687)
+border_width_left = 30
+border_width_right = 30
+border_color = Color(0, 0, 0, 0.39215687)
+border_blend = true
+corner_detail = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t1xeu"]
+bg_color = Color(0, 0, 0, 1)
+
+[node name="Resume" type="CanvasLayer" unique_id=900174955]
+process_mode = 3
+script = ExtResource("1_8f6vp")
+
+[node name="Control" type="Control" parent="." unique_id=519287209]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 6.0
+offset_top = 5.0
+offset_right = 1926.0
+offset_bottom = 1085.0
+
+[node name="PowerUp" type="PanelContainer" parent="Control" unique_id=1225800672]
+z_index = -10
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -286.0
+offset_top = -68.0
+offset_right = 286.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("3_bjfho")
+theme_override_styles/panel = SubResource("StyleBoxFlat_8jye8")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/PowerUp" unique_id=1895070752]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/PowerUp/VBoxContainer" unique_id=1300014870]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+alignment = 1
+
+[node name="Player1" type="HBoxContainer" parent="Control/PowerUp/VBoxContainer/HBoxContainer" unique_id=2119419305]
+modulate = Color(1, 0.5019608, 0.5019608, 0.49803922)
+layout_mode = 2
+alignment = 1
+
+[node name="0" type="TextureRect" parent="Control/PowerUp/VBoxContainer/HBoxContainer/Player1" unique_id=375446578]
+layout_mode = 2
+texture = ExtResource("4_36asn")
+
+[node name="1" type="TextureRect" parent="Control/PowerUp/VBoxContainer/HBoxContainer/Player1" unique_id=176486465]
+layout_mode = 2
+texture = ExtResource("5_8jye8")
+
+[node name="2" type="TextureRect" parent="Control/PowerUp/VBoxContainer/HBoxContainer/Player1" unique_id=1378502652]
+layout_mode = 2
+texture = ExtResource("4_t1xeu")
+
+[node name="3" type="TextureRect" parent="Control/PowerUp/VBoxContainer/HBoxContainer/Player1" unique_id=855602475]
+layout_mode = 2
+texture = ExtResource("5_36asn")
+
+[node name="Player2" type="HBoxContainer" parent="Control/PowerUp/VBoxContainer/HBoxContainer" unique_id=56332169]
+modulate = Color(0.99215686, 1, 0.5019608, 0.49803922)
+layout_mode = 2
+alignment = 1
+
+[node name="0" type="TextureRect" parent="Control/PowerUp/VBoxContainer/HBoxContainer/Player2" unique_id=1859715497]
+layout_mode = 2
+texture = ExtResource("4_36asn")
+
+[node name="1" type="TextureRect" parent="Control/PowerUp/VBoxContainer/HBoxContainer/Player2" unique_id=2071836178]
+layout_mode = 2
+texture = ExtResource("5_8jye8")
+
+[node name="2" type="TextureRect" parent="Control/PowerUp/VBoxContainer/HBoxContainer/Player2" unique_id=296086997]
+layout_mode = 2
+texture = ExtResource("4_t1xeu")
+
+[node name="3" type="TextureRect" parent="Control/PowerUp/VBoxContainer/HBoxContainer/Player2" unique_id=1946640283]
+layout_mode = 2
+texture = ExtResource("5_36asn")
+
+[node name="Player3" type="HBoxContainer" parent="Control/PowerUp/VBoxContainer/HBoxContainer" unique_id=1067710410]
+modulate = Color(0.5176471, 1, 0.5019608, 0.49803922)
+layout_mode = 2
+alignment = 1
+
+[node name="0" type="TextureRect" parent="Control/PowerUp/VBoxContainer/HBoxContainer/Player3" unique_id=1852564709]
+layout_mode = 2
+texture = ExtResource("4_36asn")
+
+[node name="1" type="TextureRect" parent="Control/PowerUp/VBoxContainer/HBoxContainer/Player3" unique_id=1632208735]
+layout_mode = 2
+texture = ExtResource("5_8jye8")
+
+[node name="2" type="TextureRect" parent="Control/PowerUp/VBoxContainer/HBoxContainer/Player3" unique_id=1606538583]
+layout_mode = 2
+texture = ExtResource("4_t1xeu")
+
+[node name="3" type="TextureRect" parent="Control/PowerUp/VBoxContainer/HBoxContainer/Player3" unique_id=2118582617]
+layout_mode = 2
+texture = ExtResource("5_36asn")
+
+[node name="Player4" type="HBoxContainer" parent="Control/PowerUp/VBoxContainer/HBoxContainer" unique_id=431645731]
+modulate = Color(0.5019608, 0.73333335, 1, 0.49803922)
+layout_mode = 2
+alignment = 1
+
+[node name="0" type="TextureRect" parent="Control/PowerUp/VBoxContainer/HBoxContainer/Player4" unique_id=803766958]
+layout_mode = 2
+texture = ExtResource("4_36asn")
+
+[node name="1" type="TextureRect" parent="Control/PowerUp/VBoxContainer/HBoxContainer/Player4" unique_id=1347478980]
+layout_mode = 2
+texture = ExtResource("5_8jye8")
+
+[node name="2" type="TextureRect" parent="Control/PowerUp/VBoxContainer/HBoxContainer/Player4" unique_id=1354964997]
+layout_mode = 2
+texture = ExtResource("4_t1xeu")
+
+[node name="3" type="TextureRect" parent="Control/PowerUp/VBoxContainer/HBoxContainer/Player4" unique_id=931260386]
+layout_mode = 2
+texture = ExtResource("5_36asn")
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/PowerUp/VBoxContainer" unique_id=985058247]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+
+[node name="HUD" type="PanelContainer" parent="Control" unique_id=1383059132]
+z_index = -10
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 40.0
+grow_horizontal = 2
+theme = ExtResource("3_bjfho")
+theme_override_styles/panel = SubResource("StyleBoxFlat_6fbih")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/HUD" unique_id=548402175]
+layout_mode = 2
+alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/HUD/VBoxContainer" unique_id=1968306144]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+
+[node name="Time" type="Label" parent="Control/HUD/VBoxContainer" unique_id=1472087630]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.36862746, 0.4862745, 0.65882355, 1)
+theme_override_font_sizes/font_size = 128
+text = "Time"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/HUD/VBoxContainer" unique_id=1933477580]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+alignment = 1
+
+[node name="P1" type="Label" parent="Control/HUD/VBoxContainer/HBoxContainer" unique_id=1383508889]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 0.5019608, 0.5019608, 1)
+text = "1"
+horizontal_alignment = 1
+
+[node name="P2" type="Label" parent="Control/HUD/VBoxContainer/HBoxContainer" unique_id=878310496]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.99215686, 1, 0.5019608, 1)
+text = "2"
+horizontal_alignment = 1
+
+[node name="P3" type="Label" parent="Control/HUD/VBoxContainer/HBoxContainer" unique_id=257182056]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.5176471, 1, 0.5019608, 1)
+text = "3"
+horizontal_alignment = 1
+
+[node name="P4" type="Label" parent="Control/HUD/VBoxContainer/HBoxContainer" unique_id=1597763392]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.5019608, 0.73333335, 1, 1)
+text = "4"
+horizontal_alignment = 1
+
+[node name="Pause" type="PanelContainer" parent="Control" unique_id=485241188]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -272.0
+offset_top = -5.0
+offset_right = 272.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_bjfho")
+theme_override_styles/panel = SubResource("StyleBoxFlat_bjfho")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/Pause" unique_id=361307813]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="Control/Pause/VBoxContainer" unique_id=1850096217]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_6fbih")
+theme_override_font_sizes/font_size = 80
+text = "Paused"
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/Pause/VBoxContainer" unique_id=685534362]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+
+[node name="Resume" type="Button" parent="Control/Pause/VBoxContainer" unique_id=52475567]
+z_index = 3
+layout_mode = 2
+text = "Resume"
+flat = true
+script = ExtResource("8_43w4t")
+
+[node name="Settings" type="Button" parent="Control/Pause/VBoxContainer" unique_id=1327596152]
+layout_mode = 2
+text = "Options"
+flat = true
+script = ExtResource("8_43w4t")
+
+[node name="Quit to Menu" type="Button" parent="Control/Pause/VBoxContainer" unique_id=504104637]
+z_index = 3
+layout_mode = 2
+text = "Quit to Menu"
+flat = true
+script = ExtResource("8_43w4t")
+
+[node name="Quit Game" type="Button" parent="Control/Pause/VBoxContainer" unique_id=245637651]
+z_index = 3
+layout_mode = 2
+text = "Quit Game"
+flat = true
+script = ExtResource("8_43w4t")
+
+[node name="GameOver" type="PanelContainer" parent="Control" unique_id=726228766]
+visible = false
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = -6.0
+offset_top = -5.0
+offset_right = 518.0
+offset_bottom = -5.0
+grow_vertical = 2
+theme = ExtResource("3_bjfho")
+theme_override_styles/panel = SubResource("StyleBoxFlat_fccik")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/GameOver" unique_id=161389733]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="Control/GameOver/VBoxContainer" unique_id=654563268]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_6fbih")
+theme_override_font_sizes/font_size = 80
+text = "GAME
+OVER!"
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/GameOver/VBoxContainer" unique_id=404434371]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+
+[node name="Play Again" type="Button" parent="Control/GameOver/VBoxContainer" unique_id=834553833]
+layout_mode = 2
+text = "Play Again"
+flat = true
+script = ExtResource("8_43w4t")
+
+[node name="Quit to Menu" type="Button" parent="Control/GameOver/VBoxContainer" unique_id=536181717]
+z_index = 3
+layout_mode = 2
+text = "Quit to Menu"
+flat = true
+script = ExtResource("8_43w4t")
+
+[node name="Quit Game" type="Button" parent="Control/GameOver/VBoxContainer" unique_id=612160307]
+z_index = 3
+layout_mode = 2
+text = "Quit Game"
+flat = true
+script = ExtResource("8_43w4t")
+
+[node name="MarginContainer2" type="MarginContainer" parent="Control/GameOver/VBoxContainer" unique_id=1803458085]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+
+[node name="Score_Update" type="Label" parent="Control/GameOver/VBoxContainer" unique_id=1438012098]
+layout_mode = 2
+text = "Scores"
+horizontal_alignment = 1
+
+[node name="Score_Update1" type="Label" parent="Control/GameOver/VBoxContainer" unique_id=1256341906]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.5, 0.5, 1)
+text = "P1: 0"
+horizontal_alignment = 1
+
+[node name="Score_Update2" type="Label" parent="Control/GameOver/VBoxContainer" unique_id=248431749]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.99300003, 1, 0.5, 1)
+text = "P2: 0"
+horizontal_alignment = 1
+
+[node name="Score_Update3" type="Label" parent="Control/GameOver/VBoxContainer" unique_id=1136175947]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.52199996, 1, 0.5, 1)
+text = "P3: 0"
+horizontal_alignment = 1
+
+[node name="Score_Update4" type="Label" parent="Control/GameOver/VBoxContainer" unique_id=1042677923]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5, 0.73300004, 1, 1)
+text = "P4: 0"
+horizontal_alignment = 1
+
+[node name="Loading" type="PanelContainer" parent="Control" unique_id=1740030306]
+visible = false
+z_index = 100
+layout_mode = 0
+offset_left = -6.0
+offset_top = -5.0
+offset_right = 1914.0
+offset_bottom = 1075.0
+theme = ExtResource("3_bjfho")
+theme_override_styles/panel = SubResource("StyleBoxFlat_t1xeu")
+
+[node name="Label" type="Label" parent="Control/Loading" unique_id=43258174]
+layout_mode = 2
+text = "Loading..."
+horizontal_alignment = 1
+
+[connection signal="mouse_entered" from="Control/Pause/VBoxContainer/Resume" to="Control/Pause/VBoxContainer/Resume" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Control/Pause/VBoxContainer/Resume" to="Control/Pause/VBoxContainer/Resume" method="_on_mouse_exited"]
+[connection signal="pressed" from="Control/Pause/VBoxContainer/Resume" to="." method="_on_resume_pressed_pause"]
+[connection signal="pressed" from="Control/Pause/VBoxContainer/Resume" to="Control/Pause/VBoxContainer/Resume" method="_on_pressed"]
+[connection signal="mouse_entered" from="Control/Pause/VBoxContainer/Settings" to="Control/Pause/VBoxContainer/Settings" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Control/Pause/VBoxContainer/Settings" to="Control/Pause/VBoxContainer/Settings" method="_on_mouse_exited"]
+[connection signal="pressed" from="Control/Pause/VBoxContainer/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="Control/Pause/VBoxContainer/Settings" to="Control/Pause/VBoxContainer/Settings" method="_on_pressed"]
+[connection signal="mouse_entered" from="Control/Pause/VBoxContainer/Quit to Menu" to="Control/Pause/VBoxContainer/Quit to Menu" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Control/Pause/VBoxContainer/Quit to Menu" to="Control/Pause/VBoxContainer/Quit to Menu" method="_on_mouse_exited"]
+[connection signal="pressed" from="Control/Pause/VBoxContainer/Quit to Menu" to="." method="_on_quit_to_menu_pressed_pause"]
+[connection signal="pressed" from="Control/Pause/VBoxContainer/Quit to Menu" to="Control/Pause/VBoxContainer/Quit to Menu" method="_on_pressed"]
+[connection signal="mouse_entered" from="Control/Pause/VBoxContainer/Quit Game" to="Control/Pause/VBoxContainer/Quit Game" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Control/Pause/VBoxContainer/Quit Game" to="Control/Pause/VBoxContainer/Quit Game" method="_on_mouse_exited"]
+[connection signal="pressed" from="Control/Pause/VBoxContainer/Quit Game" to="." method="_on_quit_game_pressed_pause"]
+[connection signal="pressed" from="Control/Pause/VBoxContainer/Quit Game" to="Control/Pause/VBoxContainer/Quit Game" method="_on_pressed"]
+[connection signal="mouse_entered" from="Control/GameOver/VBoxContainer/Play Again" to="Control/GameOver/VBoxContainer/Play Again" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Control/GameOver/VBoxContainer/Play Again" to="Control/GameOver/VBoxContainer/Play Again" method="_on_mouse_exited"]
+[connection signal="pressed" from="Control/GameOver/VBoxContainer/Play Again" to="." method="_on_play_again_pressed"]
+[connection signal="pressed" from="Control/GameOver/VBoxContainer/Play Again" to="Control/GameOver/VBoxContainer/Play Again" method="_on_pressed"]
+[connection signal="mouse_entered" from="Control/GameOver/VBoxContainer/Quit to Menu" to="Control/GameOver/VBoxContainer/Quit to Menu" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Control/GameOver/VBoxContainer/Quit to Menu" to="Control/GameOver/VBoxContainer/Quit to Menu" method="_on_mouse_exited"]
+[connection signal="pressed" from="Control/GameOver/VBoxContainer/Quit to Menu" to="." method="_on_quit_to_menu_pressed_gameover"]
+[connection signal="pressed" from="Control/GameOver/VBoxContainer/Quit to Menu" to="Control/GameOver/VBoxContainer/Quit to Menu" method="_on_pressed"]
+[connection signal="mouse_entered" from="Control/GameOver/VBoxContainer/Quit Game" to="Control/GameOver/VBoxContainer/Quit Game" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Control/GameOver/VBoxContainer/Quit Game" to="Control/GameOver/VBoxContainer/Quit Game" method="_on_mouse_exited"]
+[connection signal="pressed" from="Control/GameOver/VBoxContainer/Quit Game" to="." method="_on_quit_game_pressed_gameover"]
+[connection signal="pressed" from="Control/GameOver/VBoxContainer/Quit Game" to="Control/GameOver/VBoxContainer/Quit Game" method="_on_pressed"]

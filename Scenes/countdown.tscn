@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://w5ucxxubuily"]
+
+[ext_resource type="Script" uid="uid://bs1fxig7cnmh" path="res://Scripts/countdown.gd" id="1_acgio"]
+[ext_resource type="FontFile" uid="uid://cuyigfdom0xgu" path="res://Assets/fonts/PixelOperator8-Bold.ttf" id="3_2gjdc"]
+[ext_resource type="Theme" uid="uid://cc32agmbob0jw" path="res://Theme/main.tres" id="4_rya2y"]
+[ext_resource type="AudioStream" uid="uid://bu6p1j0ll1uek" path="res://Assets/Audio/TickReverb.wav" id="5_2gjdc"]
+[ext_resource type="Texture2D" uid="uid://vfm1gly3f132" path="res://Assets/Sprites/BackgroundTest.png" id="6_2gjdc"]
+[ext_resource type="Script" uid="uid://t44thskikq3g" path="res://Scripts/music.gd" id="6_3ch08"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2gjdc"]
+draw_center = false
+
+[node name="Countdown" type="Control" unique_id=1394098738]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_acgio")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=711046604]
+z_index = 100
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+theme = ExtResource("4_rya2y")
+theme_override_styles/panel = SubResource("StyleBoxFlat_2gjdc")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=764776626]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer" unique_id=1934778847]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_2gjdc")
+text = "Round
+starting:"
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer" unique_id=1963675187]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+
+[node name="Number" type="Label" parent="PanelContainer/VBoxContainer" unique_id=212699440]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_2gjdc")
+theme_override_font_sizes/font_size = 240
+text = "5"
+horizontal_alignment = 1
+
+[node name="CountdownSFX" type="AudioStreamPlayer" parent="." unique_id=1730875099]
+stream = ExtResource("5_2gjdc")
+pitch_scale = 2.0
+script = ExtResource("6_3ch08")
+
+[node name="BG" type="Sprite2D" parent="." unique_id=1093180279]
+position = Vector2(0.5003581, -3.4999285)
+scale = Vector2(64.007195, 63.88135)
+texture = ExtResource("6_2gjdc")

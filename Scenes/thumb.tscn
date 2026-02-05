@@ -1,0 +1,44 @@
+[gd_scene load_steps=5 format=3 uid="uid://ba0uhn0sjsw2o"]
+
+[ext_resource type="Theme" uid="uid://cc32agmbob0jw" path="res://Theme/main.tres" id="1_61nfu"]
+[ext_resource type="PackedScene" uid="uid://df462wvm04gre" path="res://Scenes/background.tscn" id="2_enadx"]
+[ext_resource type="FontFile" uid="uid://cuyigfdom0xgu" path="res://Assets/fonts/PixelOperator8-Bold.ttf" id="3_enadx"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_enadx"]
+draw_center = false
+
+[node name="Thumb" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("1_61nfu")
+
+[node name="background" parent="." instance=ExtResource("2_enadx")]
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -320.0
+offset_top = -129.5
+offset_right = 320.0
+offset_bottom = 129.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_enadx")
+
+[node name="Title" type="Label" parent="PanelContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_enadx")
+theme_override_font_sizes/font_size = 192
+text = "HYPER
+TAG"
+horizontal_alignment = 1

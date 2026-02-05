@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dqqn45sgj05jx"
+path="res://.godot/imported/ParagonX9 - HyperioxX [3pO9ueOMHJI].mp3-d5524fa337f055a8a9020c319f8d3468.mp3str"
+
+[deps]
+
+source_file="res://Assets/Audio/ParagonX9 - HyperioxX [3pO9ueOMHJI].mp3"
+dest_files=["res://.godot/imported/ParagonX9 - HyperioxX [3pO9ueOMHJI].mp3-d5524fa337f055a8a9020c319f8d3468.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

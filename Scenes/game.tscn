@@ -1,0 +1,65 @@
+[gd_scene load_steps=7 format=3 uid="uid://pa1ellwmhj3k"]
+
+[ext_resource type="Script" uid="uid://dkduahkuobrk8" path="res://Scripts/game.gd" id="1_1l0tm"]
+[ext_resource type="PackedScene" uid="uid://2s60sjhjilwr" path="res://Scenes/player.tscn" id="2_4joj6"]
+[ext_resource type="Script" uid="uid://i32a8adjorp5" path="res://Scripts/camera.gd" id="4_g0w0c"]
+[ext_resource type="PackedScene" uid="uid://df462wvm04gre" path="res://Scenes/background.tscn" id="4_wowpa"]
+[ext_resource type="PackedScene" uid="uid://c1eshrn5qw2od" path="res://Scenes/hud.tscn" id="5_i6g32"]
+[ext_resource type="PackedScene" uid="uid://f5lotbowvcyl" path="res://Scenes/levels.tscn" id="7_1l0tm"]
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_1l0tm")
+
+[node name="Player" parent="." instance=ExtResource("2_4joj6")]
+z_index = 5
+position = Vector2(609, -465)
+scale = Vector2(2, 2)
+collision_layer = 2
+
+[node name="Player2" parent="." instance=ExtResource("2_4joj6")]
+z_index = 5
+position = Vector2(-799, -465)
+scale = Vector2(2, 2)
+collision_layer = 2
+player_ID = 2
+
+[node name="Player3" parent="." instance=ExtResource("2_4joj6")]
+z_index = 5
+position = Vector2(503, -49)
+scale = Vector2(2, 2)
+collision_layer = 2
+player_ID = 3
+
+[node name="Player4" parent="." instance=ExtResource("2_4joj6")]
+z_index = 5
+position = Vector2(-230, -48)
+scale = Vector2(2, 2)
+collision_layer = 2
+player_ID = 4
+
+[node name="CameraController" type="Node2D" parent="."]
+position = Vector2(0, -50)
+script = ExtResource("4_g0w0c")
+margin = Vector2(400, 250)
+
+[node name="Camera2D" type="Camera2D" parent="CameraController"]
+zoom = Vector2(2.5, 2.5)
+process_callback = 0
+limit_left = -2684
+limit_top = -2172
+limit_right = 2684
+limit_bottom = 184
+limit_smoothed = true
+drag_left_margin = 1.0
+drag_top_margin = 1.0
+drag_right_margin = 1.0
+drag_bottom_margin = 1.0
+editor_draw_limits = true
+editor_draw_drag_margin = true
+
+[node name="Levels" parent="." instance=ExtResource("7_1l0tm")]
+
+[node name="background" parent="." instance=ExtResource("4_wowpa")]
+z_index = -10
+
+[node name="HUD" parent="." instance=ExtResource("5_i6g32")]

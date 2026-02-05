@@ -1,0 +1,85 @@
+[gd_scene load_steps=10 format=3 uid="uid://b71l2etiptyc0"]
+
+[ext_resource type="Script" uid="uid://ki1f3vkmwpfv" path="res://Scripts/platform.gd" id="1_cu1n0"]
+[ext_resource type="Texture2D" uid="uid://cu0dl2sgq54c4" path="res://Assets/Sprites/MovingPlatforms.png" id="2_vyw3e"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g1nw2"]
+size = Vector2(192, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h3w6q"]
+atlas = ExtResource("2_vyw3e")
+region = Rect2(0, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jnuaj"]
+atlas = ExtResource("2_vyw3e")
+region = Rect2(192, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3vtwc"]
+atlas = ExtResource("2_vyw3e")
+region = Rect2(0, 192, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_njgyl"]
+atlas = ExtResource("2_vyw3e")
+region = Rect2(192, 192, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pe8gh"]
+atlas = ExtResource("2_vyw3e")
+region = Rect2(0, 384, 192, 192)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fywxl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h3w6q")
+}],
+"loop": false,
+"name": &"1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jnuaj")
+}],
+"loop": false,
+"name": &"2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3vtwc")
+}],
+"loop": false,
+"name": &"3",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_njgyl")
+}],
+"loop": true,
+"name": &"4",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pe8gh")
+}],
+"loop": true,
+"name": &"5",
+"speed": 5.0
+}]
+
+[node name="Platform" type="AnimatableBody2D"]
+z_index = -5
+scale = Vector2(2, 2)
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("1_cu1n0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_g1nw2")
+one_way_collision = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_fywxl")
+animation = &"1"

@@ -1,0 +1,311 @@
+[gd_scene format=3 uid="uid://1mwueoyu06t3"]
+
+[ext_resource type="Theme" uid="uid://cc32agmbob0jw" path="res://Theme/main.tres" id="1_4geyq"]
+[ext_resource type="Script" uid="uid://kok6tq47nig4" path="res://Scripts/settings.gd" id="2_i44u3"]
+[ext_resource type="FontFile" uid="uid://cuyigfdom0xgu" path="res://Assets/fonts/PixelOperator8-Bold.ttf" id="3_lhmql"]
+[ext_resource type="Script" uid="uid://b703sodkhby6p" path="res://Scripts/button_feedback.gd" id="4_aaqfp"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i44u3"]
+bg_color = Color(0, 0, 0, 0.39215687)
+corner_detail = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lhmql"]
+draw_center = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aaqfp"]
+draw_center = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j2dne"]
+draw_center = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6vr2p"]
+draw_center = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6kysc"]
+bg_color = Color(0.36862746, 0.4862745, 0.65882355, 1)
+
+[node name="Settings" type="Control" unique_id=659359221]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_i44u3")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=2056386097]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_4geyq")
+theme_override_styles/panel = SubResource("StyleBoxFlat_i44u3")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=1562531293]
+layout_mode = 2
+
+[node name="Top" type="MarginContainer" parent="PanelContainer/VBoxContainer" unique_id=1544303589]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.25
+
+[node name="Title" type="Label" parent="PanelContainer/VBoxContainer" unique_id=1522202068]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_lhmql")
+theme_override_font_sizes/font_size = 80
+text = "OPTIONS"
+horizontal_alignment = 1
+
+[node name="Contents" type="HBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=836465758]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Left" type="MarginContainer" parent="PanelContainer/VBoxContainer/Contents" unique_id=1466919059]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.25
+
+[node name="Sidebar" type="VBoxContainer" parent="PanelContainer/VBoxContainer/Contents" unique_id=1536331616]
+layout_mode = 2
+size_flags_horizontal = 4
+alignment = 1
+
+[node name="Top" type="MarginContainer" parent="PanelContainer/VBoxContainer/Contents/Sidebar" unique_id=1445498209]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.13
+
+[node name="Sound" type="Button" parent="PanelContainer/VBoxContainer/Contents/Sidebar" unique_id=1817163746]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "Audio"
+flat = true
+script = ExtResource("4_aaqfp")
+
+[node name="Centre" type="MarginContainer" parent="PanelContainer/VBoxContainer/Contents/Sidebar" unique_id=1205722419]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+
+[node name="Video" type="Button" parent="PanelContainer/VBoxContainer/Contents/Sidebar" unique_id=1973861399]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "Video"
+flat = true
+script = ExtResource("4_aaqfp")
+
+[node name="Centre2" type="MarginContainer" parent="PanelContainer/VBoxContainer/Contents/Sidebar" unique_id=1573185383]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+
+[node name="Gameplay" type="Button" parent="PanelContainer/VBoxContainer/Contents/Sidebar" unique_id=541817849]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "Gameplay"
+flat = true
+script = ExtResource("4_aaqfp")
+
+[node name="Bottom" type="MarginContainer" parent="PanelContainer/VBoxContainer/Contents/Sidebar" unique_id=1464148486]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.13
+
+[node name="Close" type="Button" parent="PanelContainer/VBoxContainer/Contents/Sidebar" unique_id=1115240111]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "CLOSE"
+flat = true
+script = ExtResource("4_aaqfp")
+
+[node name="Centre" type="MarginContainer" parent="PanelContainer/VBoxContainer/Contents" unique_id=1331033510]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.13
+
+[node name="Options" type="TabContainer" parent="PanelContainer/VBoxContainer/Contents" unique_id=1874870948]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_lhmql")
+theme_override_styles/tabbar_background = SubResource("StyleBoxFlat_aaqfp")
+theme_override_styles/tab_unselected = SubResource("StyleBoxFlat_j2dne")
+theme_override_styles/tab_hovered = SubResource("StyleBoxFlat_6vr2p")
+theme_override_styles/tab_selected = SubResource("StyleBoxFlat_6kysc")
+current_tab = 0
+tabs_visible = false
+drag_to_rearrange_enabled = true
+
+[node name="Sound" type="VBoxContainer" parent="PanelContainer/VBoxContainer/Contents/Options" unique_id=1549413591]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+metadata/_tab_index = 0
+
+[node name="Volume" type="Label" parent="PanelContainer/VBoxContainer/Contents/Options/Sound" unique_id=1319441296]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Volume"
+
+[node name="Centre" type="MarginContainer" parent="PanelContainer/VBoxContainer/Contents/Options/Sound" unique_id=1893478084]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+
+[node name="VolumeSlider" type="HSlider" parent="PanelContainer/VBoxContainer/Contents/Options/Sound" unique_id=1818896839]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+value = 100.0
+
+[node name="Video" type="VBoxContainer" parent="PanelContainer/VBoxContainer/Contents/Options" unique_id=1365403192]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+metadata/_tab_index = 1
+
+[node name="RainToggle" type="Button" parent="PanelContainer/VBoxContainer/Contents/Options/Video" unique_id=2056121056]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Rain Toggle"
+flat = true
+alignment = 0
+script = ExtResource("4_aaqfp")
+
+[node name="MarginContainer3" type="MarginContainer" parent="PanelContainer/VBoxContainer/Contents/Options/Video" unique_id=1134709869]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+
+[node name="SlimeToggle" type="Button" parent="PanelContainer/VBoxContainer/Contents/Options/Video" unique_id=376401966]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Slime Toggle"
+flat = true
+alignment = 0
+script = ExtResource("4_aaqfp")
+
+[node name="MarginContainer4" type="MarginContainer" parent="PanelContainer/VBoxContainer/Contents/Options/Video" unique_id=925134946]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+
+[node name="ScreenShakeToggle" type="Button" parent="PanelContainer/VBoxContainer/Contents/Options/Video" unique_id=540442261]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Screen Shake
+Toggle"
+flat = true
+alignment = 0
+script = ExtResource("4_aaqfp")
+
+[node name="MarginContainer5" type="MarginContainer" parent="PanelContainer/VBoxContainer/Contents/Options/Video" unique_id=561726171]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+
+[node name="BackgroundMovement" type="Button" parent="PanelContainer/VBoxContainer/Contents/Options/Video" unique_id=1829252044]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Background
+Movement
+Toggle"
+flat = true
+alignment = 0
+script = ExtResource("4_aaqfp")
+
+[node name="MarginContainer8" type="MarginContainer" parent="PanelContainer/VBoxContainer/Contents/Options/Video" unique_id=1346061990]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+
+[node name="DebugHUD" type="Button" parent="PanelContainer/VBoxContainer/Contents/Options/Video" unique_id=509488387]
+layout_mode = 2
+text = "DebugHUD"
+flat = true
+alignment = 0
+script = ExtResource("4_aaqfp")
+
+[node name="Gameplay" type="VBoxContainer" parent="PanelContainer/VBoxContainer/Contents/Options" unique_id=1396920022]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+metadata/_tab_index = 2
+
+[node name="SeekerSpeedUp" type="Button" parent="PanelContainer/VBoxContainer/Contents/Options/Gameplay" unique_id=1759765375]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Seeker Speed
+Up Toggle"
+flat = true
+alignment = 0
+script = ExtResource("4_aaqfp")
+
+[node name="MarginContainer6" type="MarginContainer" parent="PanelContainer/VBoxContainer/Contents/Options/Gameplay" unique_id=1008407825]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+
+[node name="PowerUp" type="Button" parent="PanelContainer/VBoxContainer/Contents/Options/Gameplay" unique_id=127658447]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Power Up Toggle"
+flat = true
+alignment = 0
+script = ExtResource("4_aaqfp")
+
+[node name="Right" type="MarginContainer" parent="PanelContainer/VBoxContainer/Contents" unique_id=1722483249]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.25
+
+[node name="Bottom" type="MarginContainer" parent="PanelContainer/VBoxContainer" unique_id=1855661999]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.25
+
+[connection signal="mouse_entered" from="PanelContainer/VBoxContainer/Contents/Sidebar/Sound" to="PanelContainer/VBoxContainer/Contents/Sidebar/Sound" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="PanelContainer/VBoxContainer/Contents/Sidebar/Sound" to="PanelContainer/VBoxContainer/Contents/Sidebar/Sound" method="_on_mouse_exited"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Contents/Sidebar/Sound" to="." method="_on_sound_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Contents/Sidebar/Sound" to="PanelContainer/VBoxContainer/Contents/Sidebar/Sound" method="_on_pressed"]
+[connection signal="mouse_entered" from="PanelContainer/VBoxContainer/Contents/Sidebar/Video" to="PanelContainer/VBoxContainer/Contents/Sidebar/Video" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="PanelContainer/VBoxContainer/Contents/Sidebar/Video" to="PanelContainer/VBoxContainer/Contents/Sidebar/Video" method="_on_mouse_exited"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Contents/Sidebar/Video" to="." method="_on_video_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Contents/Sidebar/Video" to="PanelContainer/VBoxContainer/Contents/Sidebar/Video" method="_on_pressed"]
+[connection signal="mouse_entered" from="PanelContainer/VBoxContainer/Contents/Sidebar/Gameplay" to="PanelContainer/VBoxContainer/Contents/Sidebar/Gameplay" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="PanelContainer/VBoxContainer/Contents/Sidebar/Gameplay" to="PanelContainer/VBoxContainer/Contents/Sidebar/Gameplay" method="_on_mouse_exited"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Contents/Sidebar/Gameplay" to="." method="_on_gameplay_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Contents/Sidebar/Gameplay" to="PanelContainer/VBoxContainer/Contents/Sidebar/Gameplay" method="_on_pressed"]
+[connection signal="mouse_entered" from="PanelContainer/VBoxContainer/Contents/Sidebar/Close" to="PanelContainer/VBoxContainer/Contents/Sidebar/Close" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="PanelContainer/VBoxContainer/Contents/Sidebar/Close" to="PanelContainer/VBoxContainer/Contents/Sidebar/Close" method="_on_mouse_exited"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Contents/Sidebar/Close" to="." method="_on_close_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Contents/Sidebar/Close" to="PanelContainer/VBoxContainer/Contents/Sidebar/Close" method="_on_pressed"]
+[connection signal="value_changed" from="PanelContainer/VBoxContainer/Contents/Options/Sound/VolumeSlider" to="." method="_on_volume_slider_value_changed"]
+[connection signal="mouse_entered" from="PanelContainer/VBoxContainer/Contents/Options/Video/RainToggle" to="PanelContainer/VBoxContainer/Contents/Options/Video/RainToggle" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="PanelContainer/VBoxContainer/Contents/Options/Video/RainToggle" to="PanelContainer/VBoxContainer/Contents/Options/Video/RainToggle" method="_on_mouse_exited"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Contents/Options/Video/RainToggle" to="." method="_on_rain_toggle_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Contents/Options/Video/RainToggle" to="PanelContainer/VBoxContainer/Contents/Options/Video/RainToggle" method="_on_pressed"]
+[connection signal="mouse_entered" from="PanelContainer/VBoxContainer/Contents/Options/Video/SlimeToggle" to="PanelContainer/VBoxContainer/Contents/Options/Video/SlimeToggle" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="PanelContainer/VBoxContainer/Contents/Options/Video/SlimeToggle" to="PanelContainer/VBoxContainer/Contents/Options/Video/SlimeToggle" method="_on_mouse_exited"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Contents/Options/Video/SlimeToggle" to="." method="_on_slime_toggle_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Contents/Options/Video/SlimeToggle" to="PanelContainer/VBoxContainer/Contents/Options/Video/SlimeToggle" method="_on_pressed"]
+[connection signal="mouse_entered" from="PanelContainer/VBoxContainer/Contents/Options/Video/ScreenShakeToggle" to="PanelContainer/VBoxContainer/Contents/Options/Video/ScreenShakeToggle" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="PanelContainer/VBoxContainer/Contents/Options/Video/ScreenShakeToggle" to="PanelContainer/VBoxContainer/Contents/Options/Video/ScreenShakeToggle" method="_on_mouse_exited"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Contents/Options/Video/ScreenShakeToggle" to="." method="_on_screen_shake_toggle_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Contents/Options/Video/ScreenShakeToggle" to="PanelContainer/VBoxContainer/Contents/Options/Video/ScreenShakeToggle" method="_on_pressed"]
+[connection signal="mouse_entered" from="PanelContainer/VBoxContainer/Contents/Options/Video/BackgroundMovement" to="PanelContainer/VBoxContainer/Contents/Options/Video/BackgroundMovement" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="PanelContainer/VBoxContainer/Contents/Options/Video/BackgroundMovement" to="PanelContainer/VBoxContainer/Contents/Options/Video/BackgroundMovement" method="_on_mouse_exited"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Contents/Options/Video/BackgroundMovement" to="." method="_on_background_movement_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Contents/Options/Video/BackgroundMovement" to="PanelContainer/VBoxContainer/Contents/Options/Video/BackgroundMovement" method="_on_pressed"]
+[connection signal="mouse_entered" from="PanelContainer/VBoxContainer/Contents/Options/Video/DebugHUD" to="PanelContainer/VBoxContainer/Contents/Options/Video/DebugHUD" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="PanelContainer/VBoxContainer/Contents/Options/Video/DebugHUD" to="PanelContainer/VBoxContainer/Contents/Options/Video/DebugHUD" method="_on_mouse_exited"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Contents/Options/Video/DebugHUD" to="." method="_on_debug_hud_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Contents/Options/Video/DebugHUD" to="PanelContainer/VBoxContainer/Contents/Options/Video/DebugHUD" method="_on_pressed"]
+[connection signal="mouse_entered" from="PanelContainer/VBoxContainer/Contents/Options/Gameplay/SeekerSpeedUp" to="PanelContainer/VBoxContainer/Contents/Options/Gameplay/SeekerSpeedUp" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="PanelContainer/VBoxContainer/Contents/Options/Gameplay/SeekerSpeedUp" to="PanelContainer/VBoxContainer/Contents/Options/Gameplay/SeekerSpeedUp" method="_on_mouse_exited"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Contents/Options/Gameplay/SeekerSpeedUp" to="." method="_on_seeker_speed_up_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Contents/Options/Gameplay/SeekerSpeedUp" to="PanelContainer/VBoxContainer/Contents/Options/Gameplay/SeekerSpeedUp" method="_on_pressed"]
+[connection signal="mouse_entered" from="PanelContainer/VBoxContainer/Contents/Options/Gameplay/PowerUp" to="PanelContainer/VBoxContainer/Contents/Options/Gameplay/PowerUp" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="PanelContainer/VBoxContainer/Contents/Options/Gameplay/PowerUp" to="PanelContainer/VBoxContainer/Contents/Options/Gameplay/PowerUp" method="_on_mouse_exited"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Contents/Options/Gameplay/PowerUp" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Contents/Options/Gameplay/PowerUp" to="PanelContainer/VBoxContainer/Contents/Options/Gameplay/PowerUp" method="_on_pressed"]

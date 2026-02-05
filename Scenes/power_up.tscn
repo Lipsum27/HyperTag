@@ -1,0 +1,80 @@
+[gd_scene load_steps=9 format=3 uid="uid://dpn03x7n8lylc"]
+
+[ext_resource type="Script" uid="uid://clv1kwcewvbci" path="res://Scripts/power_up.gd" id="1_iil6j"]
+[ext_resource type="Texture2D" uid="uid://dyrps3nt1xsgt" path="res://Assets/Sprites/power_up_jump.png" id="2_q2kqf"]
+[ext_resource type="Texture2D" uid="uid://b0fqdjdn6ao4d" path="res://Assets/Sprites/power_up_run.png" id="3_e61te"]
+[ext_resource type="Texture2D" uid="uid://qaf8rxivaqoq" path="res://Assets/Sprites/power_up_size_up.png" id="4_7djbq"]
+[ext_resource type="Texture2D" uid="uid://dhtpwrp62npxi" path="res://Assets/Sprites/power_up_size_down.png" id="5_d2qg5"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_iil6j"]
+radius = 49.010204
+
+[sub_resource type="Gradient" id="Gradient_q2kqf"]
+offsets = PackedFloat32Array(0.42465752, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="Gradient" id="Gradient_iil6j"]
+offsets = PackedFloat32Array(0, 0.77559054, 1)
+colors = PackedColorArray(1, 1, 1, 0.75000006, 1, 1, 1, 0.4055118, 1, 1, 1, 0)
+
+[node name="PowerUp" type="Node2D"]
+script = ExtResource("1_iil6j")
+
+[node name="Scale" type="Node2D" parent="."]
+scale = Vector2(3, 3)
+
+[node name="DoubleJump" type="Sprite2D" parent="Scale"]
+texture = ExtResource("2_q2kqf")
+
+[node name="Run" type="Sprite2D" parent="Scale"]
+texture = ExtResource("3_e61te")
+
+[node name="SizeUp" type="Sprite2D" parent="Scale"]
+texture = ExtResource("4_7djbq")
+
+[node name="SizeDown" type="Sprite2D" parent="Scale"]
+texture = ExtResource("5_d2qg5")
+
+[node name="Collision" type="Area2D" parent="."]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collision"]
+scale = Vector2(0.99999994, 0.99999994)
+shape = SubResource("CircleShape2D_iil6j")
+
+[node name="CollectParticle" type="CPUParticles2D" parent="."]
+z_index = -1
+scale = Vector2(1.15, 1.15)
+emitting = false
+amount = 100
+one_shot = true
+explosiveness = 1.0
+lifetime_randomness = 0.5
+emission_shape = 3
+emission_rect_extents = Vector2(5, 1)
+direction = Vector2(0, -10)
+spread = 135.0
+gravity = Vector2(0, 490)
+initial_velocity_min = 50.0
+initial_velocity_max = 500.0
+scale_amount_min = 15.0
+scale_amount_max = 25.0
+color = Color(1, 1, 1, 0.19607843)
+color_ramp = SubResource("Gradient_q2kqf")
+
+[node name="Particle" type="CPUParticles2D" parent="."]
+z_index = -10
+amount = 50
+emission_shape = 1
+emission_sphere_radius = 2.0
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 70.0
+initial_velocity_max = 100.0
+scale_amount_min = 10.0
+scale_amount_max = 15.0
+color_ramp = SubResource("Gradient_iil6j")
+
+[connection signal="body_entered" from="Collision" to="." method="_on_collision_body_entered"]

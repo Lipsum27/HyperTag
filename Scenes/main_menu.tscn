@@ -1,0 +1,238 @@
+[gd_scene format=3 uid="uid://c3xae1ppos3yd"]
+
+[ext_resource type="Script" uid="uid://b04kt3pbt4s3c" path="res://Scripts/main_menu.gd" id="1_jwap2"]
+[ext_resource type="PackedScene" uid="uid://df462wvm04gre" path="res://Scenes/background.tscn" id="3_1ehe0"]
+[ext_resource type="Theme" uid="uid://cc32agmbob0jw" path="res://Theme/main.tres" id="3_ce3w2"]
+[ext_resource type="PackedScene" uid="uid://dpy8vug7cq8r" path="res://Scenes/controls_selector.tscn" id="4_ce3w2"]
+[ext_resource type="FontFile" uid="uid://cuyigfdom0xgu" path="res://Assets/fonts/PixelOperator8-Bold.ttf" id="4_cp0ys"]
+[ext_resource type="Script" uid="uid://b703sodkhby6p" path="res://Scripts/button_feedback.gd" id="5_opfnp"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n45e2"]
+draw_center = false
+
+[node name="MainMenu" type="Control" unique_id=320200406]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_right = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jwap2")
+
+[node name="background" parent="." unique_id=569099898 instance=ExtResource("3_1ehe0")]
+z_index = -1
+
+[node name="UI" type="PanelContainer" parent="." unique_id=2049653286]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_ce3w2")
+theme_override_styles/panel = SubResource("StyleBoxFlat_n45e2")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI" unique_id=1322684564]
+layout_mode = 2
+alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/VBoxContainer" unique_id=1724868188]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Interface" type="HBoxContainer" parent="UI/VBoxContainer" unique_id=1305631119]
+layout_mode = 2
+alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/VBoxContainer/Interface" unique_id=1393441900]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+
+[node name="Main Interface" type="VBoxContainer" parent="UI/VBoxContainer/Interface" unique_id=1254464710]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="UI/VBoxContainer/Interface/Main Interface" unique_id=2006213520]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_cp0ys")
+theme_override_font_sizes/font_size = 128
+text = "HYPER
+TAG"
+horizontal_alignment = 1
+
+[node name="Margin2" type="MarginContainer" parent="UI/VBoxContainer/Interface/Main Interface" unique_id=267603924]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.5
+
+[node name="Play" type="Button" parent="UI/VBoxContainer/Interface/Main Interface" unique_id=1440783092]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 80
+text = "Start"
+flat = true
+script = ExtResource("5_opfnp")
+
+[node name="Settings" type="Button" parent="UI/VBoxContainer/Interface/Main Interface" unique_id=854246465]
+layout_mode = 2
+theme_override_font_sizes/font_size = 80
+text = "Options"
+flat = true
+script = ExtResource("5_opfnp")
+
+[node name="Quit" type="Button" parent="UI/VBoxContainer/Interface/Main Interface" unique_id=1646573684]
+layout_mode = 2
+theme_override_font_sizes/font_size = 80
+text = "Quit"
+flat = true
+script = ExtResource("5_opfnp")
+
+[node name="Margin3" type="MarginContainer" parent="UI/VBoxContainer/Interface/Main Interface" unique_id=1592454309]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer2" type="MarginContainer" parent="UI/VBoxContainer/Interface" unique_id=859117880]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.25
+
+[node name="Game Mode" type="VBoxContainer" parent="UI/VBoxContainer/Interface" unique_id=146103817]
+layout_mode = 2
+alignment = 1
+
+[node name="GameModeLabel" type="Label" parent="UI/VBoxContainer/Interface/Game Mode" unique_id=1933681509]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_cp0ys")
+theme_override_font_sizes/font_size = 80
+text = "GAME MODE"
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/VBoxContainer/Interface/Game Mode" unique_id=1625933804]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.2
+
+[node name="MarginContainer3" type="MarginContainer" parent="UI/VBoxContainer/Interface/Game Mode" unique_id=1113109130]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+
+[node name="GameMode" type="Button" parent="UI/VBoxContainer/Interface/Game Mode" unique_id=1522970381]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "Mode Title"
+flat = true
+alignment = 0
+script = ExtResource("5_opfnp")
+
+[node name="MarginContainer2" type="MarginContainer" parent="UI/VBoxContainer/Interface/Game Mode" unique_id=825473278]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="UI/VBoxContainer/Interface/Game Mode" unique_id=2054903998]
+layout_mode = 2
+size_flags_vertical = 3
+follow_focus = true
+draw_focus_border = true
+scroll_horizontal_custom_step = -0.3
+scroll_vertical_custom_step = -0.3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/VBoxContainer/Interface/Game Mode/ScrollContainer" unique_id=2023516004]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/VBoxContainer/Interface/Game Mode/ScrollContainer/VBoxContainer" unique_id=945854268]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+
+[node name="GameModeDescription" type="Label" parent="UI/VBoxContainer/Interface/Game Mode/ScrollContainer/VBoxContainer" unique_id=874294114]
+custom_minimum_size = Vector2(512, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 48
+text = "- This
+- Is
+- Where
+- The
+- Description
+- Goes"
+autowrap_mode = 3
+
+[node name="MarginContainer3" type="MarginContainer" parent="UI/VBoxContainer/Interface" unique_id=1100717848]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+
+[node name="PlayerSelector" type="HBoxContainer" parent="UI/VBoxContainer" unique_id=805302883]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="UI/VBoxContainer/PlayerSelector" unique_id=222258288]
+custom_minimum_size = Vector2(256, 236)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+use_top_left = true
+
+[node name="Controls selector" parent="UI/VBoxContainer/PlayerSelector/CenterContainer" unique_id=208382033 instance=ExtResource("4_ce3w2")]
+layout_mode = 2
+ID = 0
+
+[node name="CenterContainer2" type="CenterContainer" parent="UI/VBoxContainer/PlayerSelector" unique_id=1925253490]
+custom_minimum_size = Vector2(256, 236)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+use_top_left = true
+
+[node name="Controls selector" parent="UI/VBoxContainer/PlayerSelector/CenterContainer2" unique_id=2077874917 instance=ExtResource("4_ce3w2")]
+layout_mode = 2
+
+[node name="CenterContainer3" type="CenterContainer" parent="UI/VBoxContainer/PlayerSelector" unique_id=1812726649]
+custom_minimum_size = Vector2(256, 236)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+use_top_left = true
+
+[node name="Controls selector" parent="UI/VBoxContainer/PlayerSelector/CenterContainer3" unique_id=631682019 instance=ExtResource("4_ce3w2")]
+layout_mode = 2
+ID = 2
+
+[node name="CenterContainer4" type="CenterContainer" parent="UI/VBoxContainer/PlayerSelector" unique_id=436887815]
+custom_minimum_size = Vector2(256, 236)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+use_top_left = true
+
+[node name="Controls selector" parent="UI/VBoxContainer/PlayerSelector/CenterContainer4" unique_id=2038303653 instance=ExtResource("4_ce3w2")]
+layout_mode = 2
+ID = 3
+
+[connection signal="mouse_entered" from="UI/VBoxContainer/Interface/Main Interface/Play" to="UI/VBoxContainer/Interface/Main Interface/Play" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="UI/VBoxContainer/Interface/Main Interface/Play" to="UI/VBoxContainer/Interface/Main Interface/Play" method="_on_mouse_exited"]
+[connection signal="pressed" from="UI/VBoxContainer/Interface/Main Interface/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="UI/VBoxContainer/Interface/Main Interface/Play" to="UI/VBoxContainer/Interface/Main Interface/Play" method="_on_pressed"]
+[connection signal="mouse_entered" from="UI/VBoxContainer/Interface/Main Interface/Settings" to="UI/VBoxContainer/Interface/Main Interface/Settings" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="UI/VBoxContainer/Interface/Main Interface/Settings" to="UI/VBoxContainer/Interface/Main Interface/Settings" method="_on_mouse_exited"]
+[connection signal="pressed" from="UI/VBoxContainer/Interface/Main Interface/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="UI/VBoxContainer/Interface/Main Interface/Settings" to="UI/VBoxContainer/Interface/Main Interface/Settings" method="_on_pressed"]
+[connection signal="mouse_entered" from="UI/VBoxContainer/Interface/Main Interface/Quit" to="UI/VBoxContainer/Interface/Main Interface/Quit" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="UI/VBoxContainer/Interface/Main Interface/Quit" to="UI/VBoxContainer/Interface/Main Interface/Quit" method="_on_mouse_exited"]
+[connection signal="pressed" from="UI/VBoxContainer/Interface/Main Interface/Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="UI/VBoxContainer/Interface/Main Interface/Quit" to="UI/VBoxContainer/Interface/Main Interface/Quit" method="_on_pressed"]
+[connection signal="mouse_entered" from="UI/VBoxContainer/Interface/Game Mode/GameMode" to="UI/VBoxContainer/Interface/Game Mode/GameMode" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="UI/VBoxContainer/Interface/Game Mode/GameMode" to="UI/VBoxContainer/Interface/Game Mode/GameMode" method="_on_mouse_exited"]
+[connection signal="pressed" from="UI/VBoxContainer/Interface/Game Mode/GameMode" to="." method="_on_game_mode_pressed"]
+[connection signal="pressed" from="UI/VBoxContainer/Interface/Game Mode/GameMode" to="UI/VBoxContainer/Interface/Game Mode/GameMode" method="_on_pressed"]
