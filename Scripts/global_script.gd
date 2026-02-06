@@ -15,6 +15,9 @@ var Music_Library:Array = [
 signal scene_transition_completed
 #GlobalScript.ScreenWipe = true
 #await GlobalScript.scene_transition_completed
+@warning_ignore("unused_signal")
+signal scene_load_completed
+#GlobalScript.scene_load_completed.emit()
 
 # Variables
 var shake_duration = 0
@@ -39,6 +42,7 @@ var PowerUpToggle = true
 var PowerUpCurrentlyLoaded = false
 var DebugHUD = false
 var ScreenWipe = false
+var DoSceneTransition = true
 
 # Arrays
 var player_pos: Array[Vector2] = [

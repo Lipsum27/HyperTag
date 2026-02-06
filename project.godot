@@ -17,8 +17,9 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 config/name="HyperTag"
 run/main_scene="res://Scenes/main_menu.tscn"
 config/features=PackedStringArray("4.6", "Forward Plus")
-boot_splash/bg_color=Color(0.11764706, 0.15686275, 0.21960784, 1)
-config/icon="res://icon.svg"
+boot_splash/bg_color=Color(0, 0, 0, 1)
+boot_splash/show_image=false
+config/icon="uid://blc3ylxy5afc4"
 
 [autoload]
 
@@ -37,11 +38,12 @@ window/stretch/mode="viewport"
 [file_customization]
 
 folder_colors={
-"res://Assets/": "orange",
-"res://Export/": "yellow",
-"res://Scenes/": "green",
-"res://Scripts/": "blue",
-"res://Theme/": "purple"
+"res://Assets/": "red",
+"res://Export/": "orange",
+"res://Scenes/": "yellow",
+"res://Scripts/": "green",
+"res://Shaders/": "teal",
+"res://Theme/": "blue"
 }
 
 [global_group]

@@ -58,7 +58,7 @@ shader = SubResource("Shader_vin40")
 shader_parameter/spacing = 125.0
 shader_parameter/animation_progress = 0.50000002375
 shader_parameter/dot_size = 1.0
-shader_parameter/dot_color = Color(0, 0, 0, 1)
+shader_parameter/dot_color = Color(0.00041451462, 0.00071270054, 0.0013290645, 1)
 
 [node name="scene_transition" type="Node2D" unique_id=1221159815]
 process_mode = 3

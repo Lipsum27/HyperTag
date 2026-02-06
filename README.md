@@ -1,2 +1,2 @@
 # HyperTag
-le epic game
+git repo for version control for my game hypertag

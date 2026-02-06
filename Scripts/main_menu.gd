@@ -3,7 +3,7 @@ extends Control
 const SettingsScene = preload("res://Scenes/settings.tscn")
 @onready var MenuUI = $UI
 @onready var GameMode = $"UI/VBoxContainer/Interface/Game Mode/GameMode"
-@onready var GameModeDescription = $"UI/VBoxContainer/Interface/Game Mode/ScrollContainer/VBoxContainer/GameModeDescription"
+@onready var GameModeDescription = $"UI/VBoxContainer/Interface/Game Mode/ScrollContainer/GameModeDescription"
 @onready var Quit = $"UI/VBoxContainer/Interface/Main Interface/Quit"
 var PrevState
 var typewriter_break:bool

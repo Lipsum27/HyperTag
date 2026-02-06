@@ -188,9 +188,9 @@ func _on_quit_to_menu_pressed_pause() -> void:
 	get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
 
 func _on_quit_to_menu_pressed_gameover() -> void:
-	get_tree().paused = false
 	GlobalScript.ScreenWipe = true
 	await GlobalScript.scene_transition_completed
+	get_tree().paused = false
 	get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
 	
 func _on_quit_game_pressed_pause() -> void:

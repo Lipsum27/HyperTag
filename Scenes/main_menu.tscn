@@ -10,6 +10,12 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n45e2"]
 draw_center = false
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_opfnp"]
+draw_center = false
+border_width_top = 10
+border_width_bottom = 10
+border_color = Color(0.8, 0.8, 0.8, 0)
+
 [node name="MainMenu" type="Control" unique_id=320200406]
 layout_mode = 3
 anchors_preset = 15
@@ -117,10 +123,6 @@ layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.2
 
-[node name="MarginContainer3" type="MarginContainer" parent="UI/VBoxContainer/Interface/Game Mode" unique_id=1113109130]
-custom_minimum_size = Vector2(0, 16)
-layout_mode = 2
-
 [node name="GameMode" type="Button" parent="UI/VBoxContainer/Interface/Game Mode" unique_id=1522970381]
 layout_mode = 2
 theme_override_font_sizes/font_size = 64
@@ -138,21 +140,13 @@ size_flags_stretch_ratio = 0.1
 [node name="ScrollContainer" type="ScrollContainer" parent="UI/VBoxContainer/Interface/Game Mode" unique_id=2054903998]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_opfnp")
 follow_focus = true
 draw_focus_border = true
 scroll_horizontal_custom_step = -0.3
 scroll_vertical_custom_step = -0.3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/VBoxContainer/Interface/Game Mode/ScrollContainer" unique_id=2023516004]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="MarginContainer" type="MarginContainer" parent="UI/VBoxContainer/Interface/Game Mode/ScrollContainer/VBoxContainer" unique_id=945854268]
-custom_minimum_size = Vector2(0, 16)
-layout_mode = 2
-
-[node name="GameModeDescription" type="Label" parent="UI/VBoxContainer/Interface/Game Mode/ScrollContainer/VBoxContainer" unique_id=874294114]
+[node name="GameModeDescription" type="Label" parent="UI/VBoxContainer/Interface/Game Mode/ScrollContainer" unique_id=874294114]
 custom_minimum_size = Vector2(512, 0)
 layout_mode = 2
 size_flags_horizontal = 3
