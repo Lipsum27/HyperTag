@@ -2,16 +2,12 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://vfm1gly3f132"
-path="res://.godot/imported/BackgroundTest.png-a6772a92954b948e843621fa2dc445f7.ctex"
-metadata={
-"vram_texture": false
-}
+uid="uid://br7y1qofu6fu6"
+valid=false
 
 [deps]
 
-source_file="res://Assets/Sprites/BackgroundTest.png"
-dest_files=["res://.godot/imported/BackgroundTest.png-a6772a92954b948e843621fa2dc445f7.ctex"]
+source_file="res://Assets/Sprites/taunt.aseprite"
 
 [params]
 

@@ -1,8 +1,10 @@
 extends Node2D
 
+# other power up shit is in game.gd
+
 #region why am i using so many variables?????
 
-var Map1BasePositions:Array = [
+var map1basePositions:Array = [
 	Vector2(0, -770),
 	Vector2(1376, -704),
 	Vector2(-1376, -704),
@@ -12,7 +14,7 @@ var Map1BasePositions:Array = [
 	Vector2(-1696, -80),
 ]
 
-var Map2BasePositions:Array = [
+var map2basePositions:Array = [
 	Vector2(-2314.0, -1276.0),
 	Vector2(-1751.0, -758.0),
 	Vector2(-1100.0, -1262.0),
@@ -25,7 +27,7 @@ var Map2BasePositions:Array = [
 	Vector2(1853.0, -511.0),
 	Vector2(2310.0, -1405.0),
 ]
-var Map3BasePositions:Array = [
+var map3basePositions:Array = [
 	Vector2(0.0, -236.0),
 	Vector2(-2254.0, -236.0),
 	Vector2(2254.0, -236.0),
@@ -33,95 +35,106 @@ var Map3BasePositions:Array = [
 	Vector2(2254.0, -1740.0),
 ]
 
-var Maps:int = 3
-
-var PowerUpNames:Array = [
-	"DoubleJump",
-	"Run",
-	"SizeUp",
-	"SizeDown"
+var map4basePositions:Array = [
+	Vector2(-547,-606),
+	Vector2(547,-606),
+	Vector2(-547,-1818),
+	Vector2(547,-1818),
+	Vector2(-1920.0,-515.0),
+	Vector2(1920.0,-515.0),
+	Vector2(1920.0,-1476.0),
+	Vector2(-1920.0,-1476.0),
 ]
 
-const FloatSpeed:float = 6
-const SpinSpeed:float = 2
-const Flip = true
-var TargetSize:float = 3
-var UnloadTime = GlobalScript.timer + 20
-var PowerUpTime = 15
+var maps:int = 4
+
+var powerUpNames:Array = [
+	"doubleJump",
+	"run",
+	"sizeUp",
+	"sizeDown"
+]
+
+const floatSpeed:float = 6
+const spinSpeed:float = 2
+const flip = true
+var targetSize:float = 3
+var unloadTime = GlobalScript.timer + 20
+var powerUpTime = 15
 
 # Dont touch
-var PowerUpType:String
-var BasePosition:Vector2
-var Activated = false
-var PowerUpID:int
-var BaseScaleX:float
+var powerUpType:String
+var basePosition:Vector2
+var activated = false
+var powerUpID:int
+var baseScaleX:float
 
-@onready var ScaleNode = $Scale
-@onready var DoubleJump = $Scale/DoubleJump
-@onready var Run = $Scale/Run
-@onready var SizeUp = $Scale/SizeUp
-@onready var SizeDown = $Scale/SizeDown
-@onready var Collision = $Collision
-@onready var Particle = $Particle
-@onready var CollectParticle = $CollectParticle
+@onready var scaleNode = $Scale
+@onready var doubleJump = $Scale/DoubleJump
+@onready var run = $Scale/Run
+@onready var sizeUp = $Scale/SizeUp
+@onready var sizeDown = $Scale/SizeDown
+@onready var collision = $Collision
+@onready var particle = $Particle
+@onready var collectParticle = $CollectParticle
 
 #endregion
 
 func _ready() -> void:
 	visible = false
 	
-	ScaleNode.scale = Vector2(0, 0)
-	BaseScaleX = ScaleNode.scale.x
+	scaleNode.scale = Vector2(0, 0)
+	baseScaleX = scaleNode.scale.x
 	
-	var MapPositions = get( "Map" + str(GlobalScript.Level) + "BasePositions" )
-	BasePosition = MapPositions[randi_range(0, MapPositions.size() - 1)]
-	PowerUpID = randi_range(0, PowerUpNames.size())
-	PowerUpType = PowerUpNames[PowerUpID-1]
-	GlobalScript.PowerUpCurrentlyLoaded = true
+	var mapPositions = get( "Map" + str(GlobalScript.level) + "basePositions" )
+	basePosition = mapPositions[randi_range(0, mapPositions.size() - 1)]
+	powerUpID = randi_range(0, powerUpNames.size())
+	powerUpType = powerUpNames[powerUpID-1]
+	GlobalScript.powerUpCurrentlyLoaded = true
 
 
-func _process(_delta: float) -> void:
-	for i in PowerUpNames.size(): # Show correct power up
-		get_node("Scale/" + PowerUpNames[i]).visible = PowerUpType == PowerUpNames[i]
+func _process(delta: float) -> void:
+	for i in powerUpNames.size(): # Show correct power up
+		get_node("Scale/" + powerUpNames[i]).visible = powerUpType == powerUpNames[i]
 	
-	ScaleNode.scale.y = lerp(ScaleNode.scale.y, TargetSize, 0.1)
+	scaleNode.scale.y = lerp(scaleNode.scale.y, targetSize, 0.1*delta*100)
 	
-	BaseScaleX = lerp(BaseScaleX, TargetSize, 0.1)
+	baseScaleX = lerp(baseScaleX, targetSize, 0.1*delta*100)
 	
-	if Flip:
-		ScaleNode.scale.x = BaseScaleX * sin(GlobalScript.timer * SpinSpeed)
+	if flip:
+		scaleNode.scale.x = baseScaleX * sin(GlobalScript.timer * spinSpeed)
 	else:
-		ScaleNode.scale.x = BaseScaleX * abs(sin(GlobalScript.timer * SpinSpeed))
+		scaleNode.scale.x = baseScaleX * abs(sin(GlobalScript.timer * spinSpeed))
 	
-	position.y = BasePosition.y + (sin(GlobalScript.timer * FloatSpeed) * FloatSpeed)
-	position.x = BasePosition.x
+	position.y = basePosition.y + (sin(GlobalScript.timer * floatSpeed) * floatSpeed)
+	position.x = basePosition.x
 	
 	visible = true
 	
-	if UnloadTime < GlobalScript.timer:
-		GlobalScript.PowerUpCurrentlyLoaded = false
+	if unloadTime < GlobalScript.timer:
+		GlobalScript.powerUpCurrentlyLoaded = false
 		queue_free()
 	
-	if UnloadTime - 1 < GlobalScript.timer:
-		TargetSize = 0
-		Particle.emitting = false
+	if unloadTime - 1 < GlobalScript.timer:
+		targetSize = 0
+		particle.emitting = false
 
 func _on_collision_body_entered(body: Node2D) -> void:
-	if body.is_in_group("Players") and !Activated:
+	if body.is_in_group("Players") and !activated:
 		scale.x = 1
 		scale.y = 1
-		TargetSize = 0
-		UnloadTime = GlobalScript.timer + 1.5
-		Particle.emitting = false
-		CollectParticle.emitting = true
-		Activated = true
+		targetSize = 0
+		unloadTime = GlobalScript.timer + 1.5
+		particle.emitting = false
+		collectParticle.emitting = true
+		activated = true
 		var collidedPlayer = body # Check other player id
 		var collidedPlayerID = collidedPlayer.player_ID
 		if collidedPlayerID == 1:
-			GlobalScript.p1PowerUp[PowerUpID-1] = PowerUpTime
+			GlobalScript.p1PowerUp[powerUpID-1] = powerUpTime
 		if collidedPlayerID == 2:
-			GlobalScript.p2PowerUp[PowerUpID-1] = PowerUpTime
+			GlobalScript.p2PowerUp[powerUpID-1] = powerUpTime
 		if collidedPlayerID == 3:
-			GlobalScript.p3PowerUp[PowerUpID-1] = PowerUpTime
+			GlobalScript.p3PowerUp[powerUpID-1] = powerUpTime
 		if collidedPlayerID == 4:
-			GlobalScript.p4PowerUp[PowerUpID-1] = PowerUpTime
+			GlobalScript.p4PowerUp[powerUpID-1] = powerUpTime

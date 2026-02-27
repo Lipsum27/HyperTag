@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dr8nkrkqgj1ps"]
 
 [ext_resource type="Script" uid="uid://b4e5jc85fa7b" path="res://Scripts/level_select.gd" id="1_72w8f"]
-[ext_resource type="PackedScene" uid="uid://f5lotbowvcyl" path="res://Scenes/levels.tscn" id="1_nkys2"]
+[ext_resource type="PackedScene" uid="uid://bd87d6f7hed6s" path="res://Scenes/levels.scn" id="1_nkys2"]
 [ext_resource type="PackedScene" uid="uid://df462wvm04gre" path="res://Scenes/background.tscn" id="2_lx4vd"]
 [ext_resource type="Script" uid="uid://cv21q3awxo2mo" path="res://Scripts/level_select_camera.gd" id="3_lx4vd"]
 [ext_resource type="Theme" uid="uid://cc32agmbob0jw" path="res://Theme/main.tres" id="4_2sqnl"]
@@ -64,6 +64,10 @@ size_flags_vertical = 3
 
 [node name="Play" type="Button" parent="CanvasLayer/Control/PanelContainer/VBoxContainer" unique_id=1730604390]
 layout_mode = 2
+focus_neighbor_top = NodePath("../Back")
+focus_neighbor_bottom = NodePath("../Change Stage")
+focus_next = NodePath("../Change Stage")
+focus_previous = NodePath("../Back")
 theme_override_font_sizes/font_size = 128
 text = "Play"
 flat = true
@@ -75,6 +79,10 @@ size_flags_vertical = 3
 
 [node name="Change Stage" type="Button" parent="CanvasLayer/Control/PanelContainer/VBoxContainer" unique_id=448232032]
 layout_mode = 2
+focus_neighbor_top = NodePath("../Play")
+focus_neighbor_bottom = NodePath("../Back")
+focus_next = NodePath("../Back")
+focus_previous = NodePath("../Play")
 theme_override_font_sizes/font_size = 64
 text = "Change Stage"
 flat = true
@@ -82,6 +90,10 @@ script = ExtResource("5_kb5mc")
 
 [node name="Back" type="Button" parent="CanvasLayer/Control/PanelContainer/VBoxContainer" unique_id=622880962]
 layout_mode = 2
+focus_neighbor_top = NodePath("../Change Stage")
+focus_neighbor_bottom = NodePath("../Play")
+focus_next = NodePath("../Play")
+focus_previous = NodePath("../Change Stage")
 theme_override_font_sizes/font_size = 64
 text = "Back"
 flat = true

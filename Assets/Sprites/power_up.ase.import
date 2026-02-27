@@ -2,16 +2,12 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://blc3ylxy5afc4"
-path="res://.godot/imported/Icon.png-c73ed750bc7ab7e8508ae91238860942.ctex"
-metadata={
-"vram_texture": false
-}
+uid="uid://orm34moa65id"
+valid=false
 
 [deps]
 
-source_file="res://Export/Assets/Icon.png"
-dest_files=["res://.godot/imported/Icon.png-c73ed750bc7ab7e8508ae91238860942.ctex"]
+source_file="res://Assets/Sprites/power_up.ase"
 
 [params]
 

@@ -1,32 +1,32 @@
 extends Sprite2D
 
-var animation_progress: float = 0.0
-var target_progress: float = 0.0
-var transition_speed: float = 25
+var animationProgress: float = 0.0
+var targetProgress: float = 0.0
+var transitionSpeed: float = 0.4
 
 func _ready() -> void:
-	material.set_shader_parameter("animation_progress", animation_progress)
+	material.set_shader_parameter("animationProgress", animationProgress)
 
-func _process(_delta: float) -> void:
-	if GlobalScript.DoSceneTransition:
-		if GlobalScript.ScreenWipe:
-			target_progress = 1.0
+func _process(delta: float) -> void:
+	if GlobalScript.doSceneTransition:
+		if GlobalScript.screenWipe:
+			targetProgress = 1.0
 		else:
-			target_progress = -0.15
+			targetProgress = -0.15
 		
-		animation_progress += (( animation_progress - target_progress ) / abs( animation_progress - target_progress )) / -transition_speed
+		animationProgress += (( animationProgress - targetProgress ) / abs( animationProgress - targetProgress )) / -transitionSpeed * delta
 		
-		material.set_shader_parameter("animation_progress", animation_progress)
+		material.set_shader_parameter("animationProgress", animationProgress)
 		
-		if animation_progress >= 0.9:
-			GlobalScript.ScreenWipe = false
-			GlobalScript.scene_transition_completed.emit()
-		elif animation_progress <= 0:
-			animation_progress = 0
+		if animationProgress >= 0.9:
+			GlobalScript.screenWipe = false
+			GlobalScript.sceneTransitionCompleted.emit()
+		elif animationProgress <= 0:
+			animationProgress = 0
 	else:
-		target_progress = 0
-		animation_progress = 0
-		material.set_shader_parameter("animation_progress", 0)
-		if GlobalScript.ScreenWipe:
-			GlobalScript.ScreenWipe = false
-			GlobalScript.scene_transition_completed.emit()
+		targetProgress = 0
+		animationProgress = 0
+		material.set_shader_parameter("animationProgress", 0)
+		if GlobalScript.screenWipe:
+			GlobalScript.screenWipe = false
+			GlobalScript.sceneTransitionCompleted.emit()

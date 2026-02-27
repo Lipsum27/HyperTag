@@ -1,9 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://cd464ju330xyt"]
+[gd_scene format=3 uid="uid://cd464ju330xyt"]
 
 [ext_resource type="Script" uid="uid://dwhgnknfkn761" path="res://Scripts/debug_hud.gd" id="1_u5avy"]
-[ext_resource type="Theme" uid="uid://cc32agmbob0jw" path="res://Theme/main.tres" id="1_v5w1d"]
 
-[node name="DebugHUD" type="Control"]
+[node name="DebugHUD" type="Control" unique_id=73699405]
 z_index = 4096
 layout_mode = 3
 anchors_preset = 15
@@ -13,14 +12,13 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_u5avy")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1628689956]
 
-[node name="FPS" type="Label" parent="CanvasLayer"]
+[node name="FPS" type="Label" parent="CanvasLayer" unique_id=387410838]
 z_index = 4096
 offset_right = 184.0
 offset_bottom = 57.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
-theme = ExtResource("1_v5w1d")
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 24
 text = "FPS: 50"

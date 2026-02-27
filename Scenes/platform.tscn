@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://b71l2etiptyc0"]
+[gd_scene format=3 uid="uid://b71l2etiptyc0"]
 
 [ext_resource type="Script" uid="uid://ki1f3vkmwpfv" path="res://Scripts/platform.gd" id="1_cu1n0"]
 [ext_resource type="Texture2D" uid="uid://cu0dl2sgq54c4" path="res://Assets/Sprites/MovingPlatforms.png" id="2_vyw3e"]
@@ -69,17 +69,17 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Platform" type="AnimatableBody2D"]
+[node name="Platform" type="AnimatableBody2D" unique_id=1779099129]
 z_index = -5
 scale = Vector2(2, 2)
 collision_layer = 3
 collision_mask = 3
 script = ExtResource("1_cu1n0")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=611242883]
 shape = SubResource("RectangleShape2D_g1nw2")
 one_way_collision = true
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=640969944]
 sprite_frames = SubResource("SpriteFrames_fywxl")
-animation = &"1"
+animation = &"5"

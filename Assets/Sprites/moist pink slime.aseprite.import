@@ -2,16 +2,12 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dlxm4tig3ufdc"
-path="res://.godot/imported/Banner.png-ee911fb4245e5104c14707da094b6ec8.ctex"
-metadata={
-"vram_texture": false
-}
+uid="uid://b4tey8wr3sxaq"
+valid=false
 
 [deps]
 
-source_file="res://Export/Assets/Banner.png"
-dest_files=["res://.godot/imported/Banner.png-ee911fb4245e5104c14707da094b6ec8.ctex"]
+source_file="res://Assets/Sprites/moist pink slime.aseprite"
 
 [params]
 

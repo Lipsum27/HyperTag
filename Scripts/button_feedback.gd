@@ -1,27 +1,27 @@
 extends Button
 
-@export var DefaultSize:float = 1
-const Modifier:float = 1.125
-const LerpMod:float = 0.1
-var GoalSize:float
-var FontSize:float
+@export var defaultSize:float = 1
+const modifier:float = 1.125
+const lerpMod:float = 0.1
+var goalSize:float
+var fontSize:float
 
 func _ready() -> void:
-	#add_theme_font_size_override("font_size", int(DefaultSize))
-	scale = Vector2(DefaultSize, DefaultSize)
-	GoalSize = DefaultSize
-	FontSize = DefaultSize
+	#add_theme_fontSize_override("fontSize", int(defaultSize))
+	scale = Vector2(defaultSize, defaultSize)
+	goalSize = defaultSize
+	fontSize = defaultSize
 
-func _process(_delta: float) -> void:
-	scale = Vector2(FontSize, FontSize)
-	FontSize = lerp(FontSize, GoalSize, LerpMod)
+func _process(delta: float) -> void:
+	scale = Vector2(fontSize, fontSize)
+	fontSize = lerp(fontSize, goalSize, lerpMod*100*delta)
 	pivot_offset = size/2
 
 func _on_mouse_entered() -> void:
-	GoalSize = DefaultSize*Modifier
+	goalSize = defaultSize*modifier
 
 func _on_mouse_exited() -> void:
-	GoalSize = DefaultSize
+	goalSize = defaultSize
 
 func _on_pressed() -> void:
-	FontSize = DefaultSize
+	fontSize = defaultSize

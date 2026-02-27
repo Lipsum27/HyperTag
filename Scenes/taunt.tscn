@@ -1,0 +1,79 @@
+[gd_scene format=3 uid="uid://cwlntqpj0u5ph"]
+
+[ext_resource type="Script" uid="uid://ckj2pn8tpao5o" path="res://Scripts/taunt.gd" id="1_lame4"]
+[ext_resource type="Texture2D" uid="uid://ck0ucdljmyn7q" path="res://icon.svg" id="2_8o58v"]
+
+[node name="Taunt" type="Node2D" unique_id=1817096293]
+script = ExtResource("1_lame4")
+
+[node name="1" type="Node2D" parent="." unique_id=1109041922]
+modulate = Color(0, 0, 1, 1)
+position = Vector2(845, 534)
+
+[node name="1" type="Sprite2D" parent="1" unique_id=278585055]
+position = Vector2(0, -200)
+scale = Vector2(0.828125, 0.828125)
+texture = ExtResource("2_8o58v")
+
+[node name="2" type="Sprite2D" parent="1" unique_id=1899620239]
+position = Vector2(200, 0)
+scale = Vector2(0.828125, 0.828125)
+texture = ExtResource("2_8o58v")
+
+[node name="3" type="Sprite2D" parent="1" unique_id=1195654291]
+position = Vector2(0, 200)
+scale = Vector2(0.828125, 0.828125)
+texture = ExtResource("2_8o58v")
+
+[node name="4" type="Sprite2D" parent="1" unique_id=2100792584]
+position = Vector2(-200, 0)
+scale = Vector2(0.828125, 0.828125)
+texture = ExtResource("2_8o58v")
+
+[node name="2" type="Node2D" parent="." unique_id=643291746]
+modulate = Color(0, 1, 0, 1)
+position = Vector2(845, 534)
+
+[node name="1" type="Sprite2D" parent="2" unique_id=1634327885]
+position = Vector2(0, -200)
+scale = Vector2(0.828125, 0.828125)
+texture = ExtResource("2_8o58v")
+
+[node name="2" type="Sprite2D" parent="2" unique_id=1905688924]
+position = Vector2(200, 0)
+scale = Vector2(0.828125, 0.828125)
+texture = ExtResource("2_8o58v")
+
+[node name="3" type="Sprite2D" parent="2" unique_id=2035245481]
+position = Vector2(0, 200)
+scale = Vector2(0.828125, 0.828125)
+texture = ExtResource("2_8o58v")
+
+[node name="4" type="Sprite2D" parent="2" unique_id=585520596]
+position = Vector2(-200, 0)
+scale = Vector2(0.828125, 0.828125)
+texture = ExtResource("2_8o58v")
+
+[node name="3" type="Node2D" parent="." unique_id=1167024165]
+modulate = Color(1, 0, 0, 1)
+position = Vector2(845, 534)
+
+[node name="1" type="Sprite2D" parent="3" unique_id=514892523]
+position = Vector2(0, -200)
+scale = Vector2(0.828125, 0.828125)
+texture = ExtResource("2_8o58v")
+
+[node name="2" type="Sprite2D" parent="3" unique_id=1113541092]
+position = Vector2(200, 0)
+scale = Vector2(0.828125, 0.828125)
+texture = ExtResource("2_8o58v")
+
+[node name="3" type="Sprite2D" parent="3" unique_id=2109142058]
+position = Vector2(0, 200)
+scale = Vector2(0.828125, 0.828125)
+texture = ExtResource("2_8o58v")
+
+[node name="4" type="Sprite2D" parent="3" unique_id=1147648753]
+position = Vector2(-200, 0)
+scale = Vector2(0.828125, 0.828125)
+texture = ExtResource("2_8o58v")

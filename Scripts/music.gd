@@ -1,26 +1,26 @@
 extends AudioStreamPlayer
 
-var TargetVolume:float = 0
-var LerpSpeed:float = 2
-@export var GlobalMusic:bool = false
+var targetVolume:float = 0
+var lerpSpeed:float = 2
+@export var globalMusic:bool = false
 
-func _process(_delta: float) -> void: # main loop
+func _process(delta: float) -> void: # main loop
 	
 	if get_tree().paused:
-		TargetVolume = GlobalScript.volume - 15
+		targetVolume = GlobalScript.volume - 15
 	else:
-		TargetVolume = GlobalScript.volume
+		targetVolume = GlobalScript.volume
 	
-	volume_db = lerp(volume_db, TargetVolume, _delta * LerpSpeed)
+	volume_db = lerp(volume_db, targetVolume, delta * lerpSpeed)
 	
-	if GlobalMusic:
-		if stream != GlobalScript.Music_Library[GlobalScript.Song]:
-			stream = GlobalScript.Music_Library[GlobalScript.Song]
+	if globalMusic:
+		if stream != GlobalScript.musicLibrary[GlobalScript.song]:
+			stream = GlobalScript.musicLibrary[GlobalScript.song]
 			play()
 
 func update_volume():
 	if get_tree().paused:
-		TargetVolume = GlobalScript.volume - 15
+		targetVolume = GlobalScript.volume - 15
 	else:
-		TargetVolume = GlobalScript.volume
-	volume_db = TargetVolume
+		targetVolume = GlobalScript.volume
+	volume_db = targetVolume

@@ -224,6 +224,7 @@ text = "4"
 horizontal_alignment = 1
 
 [node name="Pause" type="PanelContainer" parent="Control" unique_id=485241188]
+visible = false
 layout_mode = 1
 anchors_preset = 13
 anchor_left = 0.5
@@ -255,12 +256,20 @@ layout_mode = 2
 [node name="Resume" type="Button" parent="Control/Pause/VBoxContainer" unique_id=52475567]
 z_index = 3
 layout_mode = 2
+focus_neighbor_top = NodePath("../Quit Game")
+focus_neighbor_bottom = NodePath("../Settings")
+focus_next = NodePath("../Settings")
+focus_previous = NodePath("../Quit Game")
 text = "Resume"
 flat = true
 script = ExtResource("8_43w4t")
 
 [node name="Settings" type="Button" parent="Control/Pause/VBoxContainer" unique_id=1327596152]
 layout_mode = 2
+focus_neighbor_top = NodePath("../Resume")
+focus_neighbor_bottom = NodePath("../Quit to Menu")
+focus_next = NodePath("../Quit to Menu")
+focus_previous = NodePath("../Resume")
 text = "Options"
 flat = true
 script = ExtResource("8_43w4t")
@@ -268,6 +277,10 @@ script = ExtResource("8_43w4t")
 [node name="Quit to Menu" type="Button" parent="Control/Pause/VBoxContainer" unique_id=504104637]
 z_index = 3
 layout_mode = 2
+focus_neighbor_top = NodePath("../Settings")
+focus_neighbor_bottom = NodePath("../Quit Game")
+focus_next = NodePath("../Quit Game")
+focus_previous = NodePath("../Settings")
 text = "Quit to Menu"
 flat = true
 script = ExtResource("8_43w4t")
@@ -275,6 +288,10 @@ script = ExtResource("8_43w4t")
 [node name="Quit Game" type="Button" parent="Control/Pause/VBoxContainer" unique_id=245637651]
 z_index = 3
 layout_mode = 2
+focus_neighbor_top = NodePath("../Quit to Menu")
+focus_neighbor_bottom = NodePath("../Resume")
+focus_next = NodePath("../Resume")
+focus_previous = NodePath("../Quit to Menu")
 text = "Quit Game"
 flat = true
 script = ExtResource("8_43w4t")
@@ -310,6 +327,10 @@ layout_mode = 2
 
 [node name="Play Again" type="Button" parent="Control/GameOver/VBoxContainer" unique_id=834553833]
 layout_mode = 2
+focus_neighbor_top = NodePath("../Quit Game")
+focus_neighbor_bottom = NodePath("../Quit to Menu")
+focus_next = NodePath("../Quit to Menu")
+focus_previous = NodePath("../Quit Game")
 text = "Play Again"
 flat = true
 script = ExtResource("8_43w4t")
@@ -317,6 +338,10 @@ script = ExtResource("8_43w4t")
 [node name="Quit to Menu" type="Button" parent="Control/GameOver/VBoxContainer" unique_id=536181717]
 z_index = 3
 layout_mode = 2
+focus_neighbor_top = NodePath("../Play Again")
+focus_neighbor_bottom = NodePath("../Quit Game")
+focus_next = NodePath("../Quit Game")
+focus_previous = NodePath("../Play Again")
 text = "Quit to Menu"
 flat = true
 script = ExtResource("8_43w4t")
@@ -324,6 +349,10 @@ script = ExtResource("8_43w4t")
 [node name="Quit Game" type="Button" parent="Control/GameOver/VBoxContainer" unique_id=612160307]
 z_index = 3
 layout_mode = 2
+focus_neighbor_top = NodePath("../Quit to Menu")
+focus_neighbor_bottom = NodePath("../Play Again")
+focus_next = NodePath("../Play Again")
+focus_previous = NodePath("../Quit to Menu")
 text = "Quit Game"
 flat = true
 script = ExtResource("8_43w4t")
@@ -362,7 +391,6 @@ text = "P4: 0"
 horizontal_alignment = 1
 
 [node name="Loading" type="PanelContainer" parent="Control" unique_id=1740030306]
-visible = false
 z_index = 100
 layout_mode = 0
 offset_left = -6.0

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://doy2gu0dakdok"]
 
-[ext_resource type="Texture2D" uid="uid://d4bhjyo3ulosg" path="res://Assets/Sprites/Blank.png" id="2_frdye"]
+[ext_resource type="Texture2D" uid="uid://cvl0os8g7qldp" path="res://Assets/Sprites/BlankTile.png" id="2_frdye"]
 [ext_resource type="Script" uid="uid://b5rs72b7rusel" path="res://Scripts/scene_transition.gd" id="3_8sxkv"]
 
 [sub_resource type="Shader" id="Shader_vin40"]
@@ -62,7 +62,7 @@ shader_parameter/dot_color = Color(0.00041451462, 0.00071270054, 0.0013290645, 1
 
 [node name="scene_transition" type="Node2D" unique_id=1221159815]
 process_mode = 3
-z_index = 4096
+z_index = 1000
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=654516200]
 layer = 9999
