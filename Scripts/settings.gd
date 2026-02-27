@@ -8,7 +8,7 @@ func _ready(): # setup
 
 func _process(_delta: float) -> void: # main loop
 	if Input.is_action_just_pressed("Pause"):
-		GlobalScript.SettingsShown = false
+		GlobalScript.settingsVisible = false
 		queue_free()
 	get_node("PanelContainer/VBoxContainer/Contents/OptionsScroll/Options/Video/SlimeToggle").text = "Slime Mode:\n" + str(GlobalScript.slime)
 	get_node("PanelContainer/VBoxContainer/Contents/OptionsScroll/Options/Video/RainToggle").text = "Rain: " + str(GlobalScript.rain)

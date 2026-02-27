@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://doy2gu0dakdok"]
 
-[ext_resource type="Texture2D" uid="uid://cvl0os8g7qldp" path="res://Assets/Sprites/BlankTile.png" id="2_frdye"]
+[ext_resource type="Texture2D" uid="uid://cvl0os8g7qldp" path="res://Assets/Sprites/Blank.png" id="2_frdye"]
 [ext_resource type="Script" uid="uid://b5rs72b7rusel" path="res://Scripts/scene_transition.gd" id="3_8sxkv"]
 
 [sub_resource type="Shader" id="Shader_vin40"]

@@ -49,10 +49,10 @@ var map4basePositions:Array = [
 var maps:int = 4
 
 var powerUpNames:Array = [
-	"doubleJump",
-	"run",
-	"sizeUp",
-	"sizeDown"
+	"DoubleJump",
+	"Run",
+	"SizeUp",
+	"SizeDown"
 ]
 
 const floatSpeed:float = 6
@@ -86,7 +86,7 @@ func _ready() -> void:
 	scaleNode.scale = Vector2(0, 0)
 	baseScaleX = scaleNode.scale.x
 	
-	var mapPositions = get( "Map" + str(GlobalScript.level) + "basePositions" )
+	var mapPositions = get( "map" + str(GlobalScript.level) + "basePositions" )
 	basePosition = mapPositions[randi_range(0, mapPositions.size() - 1)]
 	powerUpID = randi_range(0, powerUpNames.size())
 	powerUpType = powerUpNames[powerUpID-1]

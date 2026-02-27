@@ -1,9 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://7uk8qiitt53v"]
+[gd_scene format=3 uid="uid://7uk8qiitt53v"]
 
 [ext_resource type="Script" uid="uid://t44thskikq3g" path="res://Scripts/music.gd" id="1_fbmny"]
 
-[node name="Music" type="AudioStreamPlayer"]
+[node name="Music" type="AudioStreamPlayer" unique_id=225142652]
 process_mode = 3
 autoplay = true
 script = ExtResource("1_fbmny")
-GlobalMusic = true
+globalMusic = true
