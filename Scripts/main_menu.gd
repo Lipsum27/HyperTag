@@ -9,50 +9,50 @@ var typewriterTickTime = 0.025
 func _ready():
 	if OS.has_feature("web"):
 		get_node("UI/VBoxContainer/Interface/Main Interface/Quit").queue_free()
-	GlobalScript.song = 1
+	globalScript.song = 1
 	gameModeDescription.visible_characters = 0
 	typewriter_effect()
 
 func _process(_delta: float) -> void:
-	get_node("UI").visible = !GlobalScript.settingsVisible
-	get_node("UI/VBoxContainer/Interface/Game Mode/GameMode").text =  GlobalScript.gameModes[GlobalScript.currentGameMode]
+	get_node("UI").visible = !globalScript.settingsVisible
+	get_node("UI/VBoxContainer/Interface/Game Mode/GameMode").text =  globalScript.gameModes[globalScript.currentGameMode]
 	if typewriterBreak == true:
 		await get_tree().create_timer(typewriterTickTime).timeout
 		typewriterBreak = false
 
 func set_playerCount():
-	if GlobalScript.playerInputs[1] == 0:
-		GlobalScript.playerCount = 1
-	elif GlobalScript.playerInputs[2] == 0:
-		GlobalScript.playerCount = 2
-	elif GlobalScript.playerInputs[3] == 0:
-		GlobalScript.playerCount = 3
+	if globalScript.playerInputs[1] == 0:
+		globalScript.playerCount = 1
+	elif globalScript.playerInputs[2] == 0:
+		globalScript.playerCount = 2
+	elif globalScript.playerInputs[3] == 0:
+		globalScript.playerCount = 3
 	else:
-		GlobalScript.playerCount = 4
+		globalScript.playerCount = 4
 
 func _on_play_pressed() -> void:
 	set_playerCount()
-	GlobalScript.screenWipe = true
-	await GlobalScript.sceneTransitionCompleted
+	globalScript.screenWipe = true
+	await globalScript.sceneTransitionCompleted
 	get_tree().change_scene_to_file("res://Scenes/level_select.tscn")
 
 func _on_quit_pressed() -> void:
-	GlobalScript.screenWipe = true
-	await GlobalScript.sceneTransitionCompleted
+	globalScript.screenWipe = true
+	await globalScript.sceneTransitionCompleted
 	get_tree().quit()
 
 func _on_settings_pressed() -> void:
 	var settingsMenu = settingsScene.instantiate()
-	GlobalScript.screenWipe = true
-	await GlobalScript.sceneTransitionCompleted
+	globalScript.screenWipe = true
+	await globalScript.sceneTransitionCompleted
 	add_child(settingsMenu)
 
 func _on_game_mode_pressed() -> void:
 	typewriterBreak = true
-	if GlobalScript.currentGameMode != GlobalScript.gameModes.size() - 1:
-		GlobalScript.currentGameMode += 1
+	if globalScript.currentGameMode != globalScript.gameModes.size() - 1:
+		globalScript.currentGameMode += 1
 	else:
-		GlobalScript.currentGameMode = 0
+		globalScript.currentGameMode = 0
 	typewriter_effect()
 
 func typewriter_effect():
@@ -62,7 +62,7 @@ func typewriter_effect():
 		else:
 			gameModeDescription.visible_characters = 0
 		await get_tree().create_timer(typewriterTickTime).timeout
-	match GlobalScript.currentGameMode:
+	match globalScript.currentGameMode:
 		0:
 			gameModeDescription.set_text("-Flashing player is the tagger\n-Tag others\n-Avoid the tagger until the timer ends")
 		1:

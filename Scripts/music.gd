@@ -7,20 +7,20 @@ var lerpSpeed:float = 2
 func _process(delta: float) -> void: # main loop
 	
 	if get_tree().paused:
-		targetVolume = GlobalScript.volume - 15
+		targetVolume = globalScript.volume - 15
 	else:
-		targetVolume = GlobalScript.volume
+		targetVolume = globalScript.volume
 	
 	volume_db = lerp(volume_db, targetVolume, delta * lerpSpeed)
 	
 	if globalMusic:
-		if stream != GlobalScript.musicLibrary[GlobalScript.song]:
-			stream = GlobalScript.musicLibrary[GlobalScript.song]
+		if stream != globalScript.musicLibrary[globalScript.song]:
+			stream = globalScript.musicLibrary[globalScript.song]
 			play()
 
 func update_volume():
 	if get_tree().paused:
-		targetVolume = GlobalScript.volume - 15
+		targetVolume = globalScript.volume - 15
 	else:
-		targetVolume = GlobalScript.volume
+		targetVolume = globalScript.volume
 	volume_db = targetVolume

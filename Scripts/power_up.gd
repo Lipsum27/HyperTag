@@ -59,7 +59,7 @@ const floatSpeed:float = 6
 const spinSpeed:float = 2
 const flip = true
 var targetSize:float = 3
-var unloadTime = GlobalScript.timer + 20
+var unloadTime = globalScript.timer + 20
 var powerUpTime = 15
 
 # Dont touch
@@ -86,11 +86,11 @@ func _ready() -> void:
 	scaleNode.scale = Vector2(0, 0)
 	baseScaleX = scaleNode.scale.x
 	
-	var mapPositions = get( "map" + str(GlobalScript.level) + "basePositions" )
+	var mapPositions = get( "map" + str(globalScript.level) + "basePositions" )
 	basePosition = mapPositions[randi_range(0, mapPositions.size() - 1)]
 	powerUpID = randi_range(0, powerUpNames.size())
 	powerUpType = powerUpNames[powerUpID-1]
-	GlobalScript.powerUpCurrentlyLoaded = true
+	globalScript.powerUpCurrentlyLoaded = true
 
 
 func _process(delta: float) -> void:
@@ -102,20 +102,20 @@ func _process(delta: float) -> void:
 	baseScaleX = lerp(baseScaleX, targetSize, 0.1*delta*100)
 	
 	if flip:
-		scaleNode.scale.x = baseScaleX * sin(GlobalScript.timer * spinSpeed)
+		scaleNode.scale.x = baseScaleX * sin(globalScript.timer * spinSpeed)
 	else:
-		scaleNode.scale.x = baseScaleX * abs(sin(GlobalScript.timer * spinSpeed))
+		scaleNode.scale.x = baseScaleX * abs(sin(globalScript.timer * spinSpeed))
 	
-	position.y = basePosition.y + (sin(GlobalScript.timer * floatSpeed) * floatSpeed)
+	position.y = basePosition.y + (sin(globalScript.timer * floatSpeed) * floatSpeed)
 	position.x = basePosition.x
 	
 	visible = true
 	
-	if unloadTime < GlobalScript.timer:
-		GlobalScript.powerUpCurrentlyLoaded = false
+	if unloadTime < globalScript.timer:
+		globalScript.powerUpCurrentlyLoaded = false
 		queue_free()
 	
-	if unloadTime - 1 < GlobalScript.timer:
+	if unloadTime - 1 < globalScript.timer:
 		targetSize = 0
 		particle.emitting = false
 
@@ -124,17 +124,17 @@ func _on_collision_body_entered(body: Node2D) -> void:
 		scale.x = 1
 		scale.y = 1
 		targetSize = 0
-		unloadTime = GlobalScript.timer + 1.5
+		unloadTime = globalScript.timer + 1.5
 		particle.emitting = false
 		collectParticle.emitting = true
 		activated = true
 		var collidedPlayer = body # Check other player id
 		var collidedPlayerID = collidedPlayer.player_ID
 		if collidedPlayerID == 1:
-			GlobalScript.p1PowerUp[powerUpID-1] = powerUpTime
+			globalScript.p1PowerUp[powerUpID-1] = powerUpTime
 		if collidedPlayerID == 2:
-			GlobalScript.p2PowerUp[powerUpID-1] = powerUpTime
+			globalScript.p2PowerUp[powerUpID-1] = powerUpTime
 		if collidedPlayerID == 3:
-			GlobalScript.p3PowerUp[powerUpID-1] = powerUpTime
+			globalScript.p3PowerUp[powerUpID-1] = powerUpTime
 		if collidedPlayerID == 4:
-			GlobalScript.p4PowerUp[powerUpID-1] = powerUpTime
+			globalScript.p4PowerUp[powerUpID-1] = powerUpTime

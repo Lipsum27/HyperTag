@@ -13,7 +13,7 @@ var musicLibrary:Array = [
 # Signals
 @warning_ignore("unused_signal")
 signal sceneTransitionCompleted
-#await GlobalScript.sceneTransitionCompleted
+#await globalScript.sceneTransitionCompleted
 
 # Variables
 var shakeDuration = 0
@@ -95,7 +95,7 @@ var p3PowerUp:Array = [0, 0, 0, 0]
 
 var p4PowerUp:Array = [0, 0, 0, 0]
 
-var playerInputs: Array = [1, 0, 0, 0]
+var playerInputs: Array = [1, 2, 0, 0]
 
 var playerScores: Array = [0, 0, 0, 0]
 

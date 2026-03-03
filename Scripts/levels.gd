@@ -22,10 +22,10 @@ func set_level(level: int) -> void:
 		levelNode.show()
 
 func _ready():
-	prevLevel = GlobalScript.level
-	set_level(GlobalScript.level)
+	prevLevel = globalScript.level
+	set_level(globalScript.level)
 
 func _process(_delta: float) -> void:
-	if prevLevel != GlobalScript.level:
-		prevLevel = GlobalScript.level
-		set_level(GlobalScript.level)
+	if prevLevel != globalScript.level:
+		prevLevel = globalScript.level
+		set_level(globalScript.level)

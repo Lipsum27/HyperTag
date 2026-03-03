@@ -23,14 +23,14 @@ var minY
 func _ready(): # setup
 	camera2d.zoom = Vector2(zoom, zoom) # default zoom
 	camera2d.limit_smoothed = false # disable default camera limits
-	if GlobalScript.playerCount == 1:
+	if globalScript.playerCount == 1:
 		maxZoom = singlePlayerZoom
 		minZoom = singlePlayerZoom
 
 func _process(delta: float) -> void: # main loop
 	# Start with the bounding box around the first player's position
-	var playerPositions = GlobalScript.playerPos
-	var playerCount = GlobalScript.playerCount
+	var playerPositions = globalScript.playerPos
+	var playerCount = globalScript.playerCount
 	var r = Rect2(playerPositions[0], Vector2.ONE) # Starts 'r' at player 1's position
 	
 	# Expand the rectangle to include all player positions
@@ -55,22 +55,22 @@ func _process(delta: float) -> void: # main loop
 		minX = playerPositions[0].x
 		maxY = playerPositions[0].y
 		minY = playerPositions[0].y
-	for i in range(GlobalScript.playerCount):
+	for i in range(globalScript.playerCount):
 		# Check Max X
-		if GlobalScript.playerPos[i].x > maxX:
-			maxX = GlobalScript.playerPos[i].x
+		if globalScript.playerPos[i].x > maxX:
+			maxX = globalScript.playerPos[i].x
 		
 		# Check Min X
-		if GlobalScript.playerPos[i].x < minX:
-			minX = GlobalScript.playerPos[i].x
+		if globalScript.playerPos[i].x < minX:
+			minX = globalScript.playerPos[i].x
 			
 		# Check Max Y
-		if GlobalScript.playerPos[i].y > maxY:
-			maxY = GlobalScript.playerPos[i].y
+		if globalScript.playerPos[i].y > maxY:
+			maxY = globalScript.playerPos[i].y
 			
 		# Check Min Y
-		if GlobalScript.playerPos[i].y < minY:
-			minY = GlobalScript.playerPos[i].y
+		if globalScript.playerPos[i].y < minY:
+			minY = globalScript.playerPos[i].y
 		new_targetPosition = Vector2((maxX + minX) / 2.0, (maxY + minY) / 2.0)
 	
 	# Smoothly move the camera's target to the new center
@@ -93,16 +93,16 @@ func _process(delta: float) -> void: # main loop
 	
 	var final_clamped_pos = Vector2(clamped_x, clamped_y)
 	
-	if GlobalScript.shakeDuration > 0: # Shake
-		GlobalScript.shakeDuration -= delta
+	if globalScript.shakeDuration > 0: # Shake
+		globalScript.shakeDuration -= delta
 		shake = Vector2(
-			randf_range(-1, 1) * GlobalScript.shakeIntensity,
-			randf_range(-1, 1) * GlobalScript.shakeIntensity
+			randf_range(-1, 1) * globalScript.shakeIntensity,
+			randf_range(-1, 1) * globalScript.shakeIntensity
 		)
 	else:
 		shake = shake.lerp(Vector2.ZERO, 0.2 *delta*100) # decay
 	
-	if GlobalScript.screenShake:
+	if globalScript.screenShake:
 		position = final_clamped_pos + shake # final pos w/ shake
 	else:
 		position = final_clamped_pos # final pos

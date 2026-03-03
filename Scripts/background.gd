@@ -29,7 +29,7 @@ func _ready():
 		sin_values.append(randf_range(-20, -5))
 
 func _process(delta: float) -> void:
-	get_node("Rain").visible = GlobalScript.rain # rain toggle
+	get_node("Rain").visible = globalScript.rain # rain toggle
 	time += randf_range(0.5, 2)*delta*100
 	move()
 
@@ -42,7 +42,7 @@ func move(): # Set offsets
 		generic_y_offset = tilemapOffset
 		generic_y_offset = lightOffset
 	
-	if GlobalScript.backgroundMovement:
+	if globalScript.backgroundMovement:
 		# background
 		background.position.x = sin(time * sin_values[0]) * -1 * sin_values[6]
 		background.position.y = (sin(time * sin_values[1]) * -1 * sin_values[7]) + background_y_offset
@@ -72,7 +72,7 @@ func move(): # Set offsets
 	# Lights
 	for i in range(lightPos.size()):
 		var currentNode = get_node("Tilemaps/LampPost/Lights/" + str(i+1))
-		if GlobalScript.backgroundMovement:
+		if globalScript.backgroundMovement:
 			currentNode.position.x = (sin(time * sin_values[4]) * sin_values[10]) + lightPos[i].x
 			currentNode.position.y = (sin(time * sin_values[5]) * sin_values[11]) + generic_y_offset + lightPos[i].y
 			currentNode.modulate.a = 0.75

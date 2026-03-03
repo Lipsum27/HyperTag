@@ -20,7 +20,7 @@ func _ready() -> void:
 	visible = true
 	for node in sets.values():
 		node.visible = false
-	suffix = "_" + str(GlobalScript.playerInputs[playerID - 1])
+	suffix = "_" + str(globalScript.playerInputs[playerID - 1])
 
 func _process(delta: float) -> void:
 	for dir in directions:
