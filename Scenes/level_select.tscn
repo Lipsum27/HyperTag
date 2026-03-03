@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://b4e5jc85fa7b" path="res://Scripts/level_select.gd" id="1_72w8f"]
 [ext_resource type="PackedScene" uid="uid://bd87d6f7hed6s" path="res://Scenes/levels.scn" id="1_nkys2"]
 [ext_resource type="PackedScene" uid="uid://df462wvm04gre" path="res://Scenes/background.tscn" id="2_lx4vd"]
-[ext_resource type="Script" uid="uid://cv21q3awxo2mo" path="res://Scripts/level_select_camera.gd" id="3_lx4vd"]
 [ext_resource type="Theme" uid="uid://cc32agmbob0jw" path="res://Theme/main.tres" id="4_2sqnl"]
 [ext_resource type="FontFile" uid="uid://cuyigfdom0xgu" path="res://Assets/fonts/PixelOperator8-Bold.ttf" id="4_s6o25"]
 [ext_resource type="Script" uid="uid://b703sodkhby6p" path="res://Scripts/button_feedback.gd" id="5_kb5mc"]
@@ -15,8 +14,6 @@ draw_center = false
 script = ExtResource("1_72w8f")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=150475698]
-modulate = Color(0.8734448, 0.00043125154, 0.83660895, 1)
-self_modulate = Color(1, 0, 0, 1)
 position = Vector2(0, -994)
 zoom = Vector2(0.358, 0.358)
 limit_left = -2684
@@ -25,7 +22,6 @@ limit_right = 2684
 limit_bottom = 184
 limit_smoothed = true
 position_smoothing_enabled = true
-script = ExtResource("3_lx4vd")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=763914999]
 
@@ -103,6 +99,15 @@ script = ExtResource("5_kb5mc")
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.1
+
+[node name="blocker" type="ColorRect" parent="CanvasLayer" unique_id=2061620254]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
 
 [node name="background" parent="." unique_id=952209121 instance=ExtResource("2_lx4vd")]
 clip_children = 1
