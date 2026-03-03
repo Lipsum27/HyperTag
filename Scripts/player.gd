@@ -15,42 +15,42 @@ extends CharacterBody2D
 @export var player_ID = 1
 
 var speed:float
-var speed_base = 200
-var speed_bonus = 100
-var scale_base = 2
-var scale_bonus_plus = 2
-var scale_bonus_minus = 0.75
-var scale_target:Vector2
+var speedBase = 200
+var speedBonus = 100
+var scaleBase = 2
+var scaleBonusPlus = 2
+var scaleBonusMinus = 0.75
+var scaleTarget:Vector2
 var gravity = 20
-var jump_force = 500
-var slam_force = 2000
-var midair_jumps = 1
-var midair_jumps_bonus = 1
-var midair_jump_force = 400
+var jumpForce = 500
+var slamForce = 2000
+var midairJumps = 1
+var midairJumps_bonus = 1
+var midairJumpForce = 400
 var friction = 1.25
-var max_y_speed = 10000
-var max_x_speed = 10000
-var walljump_x = 4
-var walljump_y = 1.5
-var dash_multiplier = 5
-var slam_jump_multiplier = 1.5
-var floor_speed_multiplier = 0.6
-var wall_slide_speed_multiplier = 0.8
-var slide_x = 5000
-var double_jump_multiplier = 2
-var full_coyote_time = 0.2
-var full_slide_cooldown = .3
-var full_slam_jump_time = 0.15
-var slam_jump_draining:bool = false
-var slam_jump_time = 0
-var tagger_movement_variance = 1
-var coyote_time = 0
-var current_air_jumps = 1
-var currently_slamming:bool = false
-var slide_cooldown = 0
-var midair_dash = 0
-var instant_slide:bool
-var round_end_buffer:int = 5
+var yMaxSpeed = 10000
+var XMaxSpeed = 10000
+var wallJumpX = 4
+var wallJumpY = 1.5
+var dashMultiplier = 5
+var slamJumpMultiplier = 1.5
+var floorSpeedMultiplier = 0.6
+var wallSlideSpeedMultiplier = 0.8
+var slideX = 5000
+var doubleJumpMultiplier = 2
+var fullCoyoteTime = 0.2
+var fullSlideCooldown = .3
+var fullSlamJumpTime = 0.15
+var slamJumpDraining:bool = false
+var slamJumpTime = 0
+var taggerMovementVariance = 1
+var coyoteTime = 0
+var currentAirJumps = 1
+var currentlySlamming:bool = false
+var slideCooldown = 0
+var midairDash = 0
+var instantSlide:bool
+var roundEndBuffer:int = 5
 #endregion
 
 func _ready(): # setup
@@ -58,7 +58,7 @@ func _ready(): # setup
 		queue_free()
 	add_to_group("Players")
 	position = GlobalScript.get("map" + str(GlobalScript.level) + "PlayerSpawns")[player_ID-1]
-	scale_target = Vector2(scale_base, scale_base)
+	scaleTarget = Vector2(scaleBase, scaleBase)
 
 func spawn_particle(action: String):
 	match action:
@@ -97,173 +97,173 @@ func _physics_process(delta): # main loop
 	
 	# Speed up
 	if player_ID == 1 && GlobalScript.p1PowerUp[1]> 0:
-		speed = speed_base + speed_bonus
+		speed = speedBase + speedBonus
 	elif player_ID == 2 && GlobalScript.p2PowerUp[1]> 0:
-		speed = speed_base + speed_bonus
+		speed = speedBase + speedBonus
 	elif player_ID == 3 && GlobalScript.p3PowerUp[1]> 0:
-		speed = speed_base + speed_bonus
+		speed = speedBase + speedBonus
 	elif player_ID == 4 && GlobalScript.p4PowerUp[1]> 0:
-		speed = speed_base + speed_bonus
+		speed = speedBase + speedBonus
 	else:
-		speed = speed_base
+		speed = speedBase
 	
 	# Size power ups
 	if player_ID == 1 && GlobalScript.p1PowerUp[2]> 0 && !GlobalScript.p1PowerUp[3]> 0:
-		scale_target = Vector2(scale_base + scale_bonus_plus, scale_base + scale_bonus_plus)
+		scaleTarget = Vector2(scaleBase + scaleBonusPlus, scaleBase + scaleBonusPlus)
 	elif player_ID == 2 && GlobalScript.p2PowerUp[2]> 0 && !GlobalScript.p2PowerUp[3]> 0:
-		scale_target = Vector2(scale_base + scale_bonus_plus, scale_base + scale_bonus_plus)
+		scaleTarget = Vector2(scaleBase + scaleBonusPlus, scaleBase + scaleBonusPlus)
 	elif player_ID == 3 && GlobalScript.p3PowerUp[2]> 0 && !GlobalScript.p3PowerUp[3]> 0:
-		scale_target = Vector2(scale_base + scale_bonus_plus, scale_base + scale_bonus_plus)
+		scaleTarget = Vector2(scaleBase + scaleBonusPlus, scaleBase + scaleBonusPlus)
 	elif player_ID == 4 && GlobalScript.p4PowerUp[2]> 0 && !GlobalScript.p4PowerUp[3]> 0:
-		scale_target = Vector2(scale_base + scale_bonus_plus, scale_base + scale_bonus_plus)
+		scaleTarget = Vector2(scaleBase + scaleBonusPlus, scaleBase + scaleBonusPlus)
 	elif player_ID == 1 && GlobalScript.p1PowerUp[3]> 0 && !GlobalScript.p1PowerUp[2]> 0:
-		scale_target = Vector2(scale_base - scale_bonus_minus, scale_base - scale_bonus_minus)
+		scaleTarget = Vector2(scaleBase - scaleBonusMinus, scaleBase - scaleBonusMinus)
 	elif player_ID == 2 && GlobalScript.p2PowerUp[3]> 0 && !GlobalScript.p2PowerUp[2]> 0:
-		scale_target = Vector2(scale_base - scale_bonus_minus, scale_base - scale_bonus_minus)
+		scaleTarget = Vector2(scaleBase - scaleBonusMinus, scaleBase - scaleBonusMinus)
 	elif player_ID == 3 && GlobalScript.p3PowerUp[3]> 0 && !GlobalScript.p3PowerUp[2]> 0:
-		scale_target = Vector2(scale_base - scale_bonus_minus, scale_base - scale_bonus_minus)
+		scaleTarget = Vector2(scaleBase - scaleBonusMinus, scaleBase - scaleBonusMinus)
 	elif player_ID == 4 && GlobalScript.p4PowerUp[3]> 0 && !GlobalScript.p4PowerUp[2]> 0:
-		scale_target = Vector2(scale_base - scale_bonus_minus, scale_base - scale_bonus_minus)
+		scaleTarget = Vector2(scaleBase - scaleBonusMinus, scaleBase - scaleBonusMinus)
 	else:
-		scale_target = Vector2(scale_base, scale_base)
+		scaleTarget = Vector2(scaleBase, scaleBase)
 	
-	scale = lerp(scale, scale_target, 0.1)
+	scale = lerp(scale, scaleTarget, 0.1)
 	
 	if player_ID > GlobalScript.playerCount:
 		return
 	
 	#if GlobalScript.currentGameMode == 2 && GlobalScript.currentTagger == player_ID: # speed up from 0.5x speed to 1.5x speed
 	if GlobalScript.currentTagger == player_ID and GlobalScript.seekerSpeedUp: # speed up from 0.5x speed to 1.5x speed
-		var tagger_timer_range = ( ( -1 * (1 + (GlobalScript.fullGameTime - GlobalScript.timer) ) ) / GlobalScript.roundTime ) + 0.58  # -0.5 to 0.5
-		tagger_movement_variance = 1 + tagger_timer_range/2 #1 + tagger_timer_range
+		var taggerTimerRange = ( ( -1 * (1 + (GlobalScript.fullGameTime - GlobalScript.timer) ) ) / GlobalScript.roundTime ) + 0.58  # -0.5 to 0.5
+		taggerMovementVariance = 1 + taggerTimerRange/2 #1 + taggerTimerRange
 	else:
-		tagger_movement_variance = 1
+		taggerMovementVariance = 1
 	
 	run_particles.emitting = false
 	
 #region CoyoteTime 
 	if is_on_floor():
-		coyote_time = full_coyote_time
+		coyoteTime = fullCoyoteTime
 	else:
-		coyote_time -= delta
+		coyoteTime -= delta
 #endregion
 
 #region MidairDash / WallJump / DoubleJump
-	midair_dash -= delta
+	midairDash -= delta
 	
 	# reset jumps on slide
 	if !is_on_floor():
-		if !currently_slamming and  coyote_time < 0:
+		if !currentlySlamming and  coyoteTime < 0:
 			if is_on_wall_only():
 				if player_ID == 1 && GlobalScript.p1PowerUp[0]> 0:
-					current_air_jumps = midair_jumps + midair_jumps_bonus
+					currentAirJumps = midairJumps + midairJumps_bonus
 				elif player_ID == 2 && GlobalScript.p2PowerUp[0]> 0:
-					current_air_jumps = midair_jumps + midair_jumps_bonus
+					currentAirJumps = midairJumps + midairJumps_bonus
 				elif player_ID == 3 && GlobalScript.p3PowerUp[0]> 0:
-					current_air_jumps = midair_jumps + midair_jumps_bonus
+					currentAirJumps = midairJumps + midairJumps_bonus
 				elif player_ID == 4 && GlobalScript.p4PowerUp[0]> 0:
-					current_air_jumps = midair_jumps + midair_jumps_bonus
+					currentAirJumps = midairJumps + midairJumps_bonus
 				else:
-					current_air_jumps = midair_jumps
+					currentAirJumps = midairJumps
 	
 	# other stuff
 	if !is_on_floor():
 		velocity.y += gravity
-		if velocity.y > max_y_speed:
-			velocity.y = max_y_speed
-		if !currently_slamming and Input.is_action_just_pressed("Jump_" + str(GlobalScript.playerInputs[player_ID-1])) && coyote_time < 0:
+		if velocity.y > yMaxSpeed:
+			velocity.y = yMaxSpeed
+		if !currentlySlamming and Input.is_action_just_pressed("Jump_" + str(GlobalScript.playerInputs[player_ID-1])) && coyoteTime < 0:
 			if is_on_wall_only():
-				velocity.y = -jump_force * walljump_y * tagger_movement_variance
-				velocity.x = jump_force * walljump_x * tagger_movement_variance
+				velocity.y = -jumpForce * wallJumpY * taggerMovementVariance
+				velocity.x = jumpForce * wallJumpX * taggerMovementVariance
 				move_and_slide()
 				if is_on_wall(): # check for other wall
-					velocity.x = jump_force * (0 - walljump_x) * tagger_movement_variance
+					velocity.x = jumpForce * (0 - wallJumpX) * taggerMovementVariance
 					move_and_slide()
-			elif !current_air_jumps == 0:
+			elif !currentAirJumps == 0:
 				if !Input.get_axis("Left_" + str(GlobalScript.playerInputs[player_ID-1]),"Right_" + str(GlobalScript.playerInputs[player_ID-1])) == 0: # dash
-					velocity.x *= dash_multiplier * tagger_movement_variance
-					velocity.y = -midair_jump_force * tagger_movement_variance
+					velocity.x *= dashMultiplier * taggerMovementVariance
+					velocity.y = -midairJumpForce * taggerMovementVariance
 					spawn_particle("dash")
 				else: # double jump
-					velocity.y = -midair_jump_force * double_jump_multiplier * tagger_movement_variance
+					velocity.y = -midairJumpForce * doubleJumpMultiplier * taggerMovementVariance
 					spawn_particle("double_jump")
-				currently_slamming = false
-				current_air_jumps = current_air_jumps - 1
-				midair_dash = .3
+				currentlySlamming = false
+				currentAirJumps = currentAirJumps - 1
+				midairDash = .3
 #endregion
 	
 #region Jump / slam
-	if coyote_time > 0:
+	if coyoteTime > 0:
 		if player_ID == 1 && GlobalScript.p1PowerUp[0]> 0:
-			current_air_jumps = midair_jumps + midair_jumps_bonus
+			currentAirJumps = midairJumps + midairJumps_bonus
 		elif player_ID == 2 && GlobalScript.p2PowerUp[0]> 0:
-			current_air_jumps = midair_jumps + midair_jumps_bonus
+			currentAirJumps = midairJumps + midairJumps_bonus
 		elif player_ID == 3 && GlobalScript.p3PowerUp[0]> 0:
-			current_air_jumps = midair_jumps + midair_jumps_bonus
+			currentAirJumps = midairJumps + midairJumps_bonus
 		elif player_ID == 4 && GlobalScript.p4PowerUp[0]> 0:
-			current_air_jumps = midair_jumps + midair_jumps_bonus
+			currentAirJumps = midairJumps + midairJumps_bonus
 		else:
-			current_air_jumps = midair_jumps
-		if currently_slamming:
+			currentAirJumps = midairJumps
+		if currentlySlamming:
 			spawn_particle("slam")
 		if Input.is_action_pressed("Jump_" + str(GlobalScript.playerInputs[player_ID-1])):
-			if slam_jump_time > 0:
-				velocity.y = -jump_force * slam_jump_multiplier * tagger_movement_variance
-				currently_slamming = false
-				coyote_time = 0
+			if slamJumpTime > 0:
+				velocity.y = -jumpForce * slamJumpMultiplier * taggerMovementVariance
+				currentlySlamming = false
+				coyoteTime = 0
 			else:
-				coyote_time = 0
-				velocity.y = -jump_force * tagger_movement_variance
+				coyoteTime = 0
+				velocity.y = -jumpForce * taggerMovementVariance
 	
 	if is_on_floor():
-		currently_slamming = false
+		currentlySlamming = false
 	
-	if !is_on_floor() && Input.is_action_just_pressed("Down_" + str(GlobalScript.playerInputs[player_ID-1])) && !currently_slamming && coyote_time < 0:
-		currently_slamming = true
-		velocity.y = slam_force * tagger_movement_variance
-		slam_jump_time = full_slam_jump_time
-		slam_jump_draining = false
+	if !is_on_floor() && Input.is_action_just_pressed("Down_" + str(GlobalScript.playerInputs[player_ID-1])) && !currentlySlamming && coyoteTime < 0:
+		currentlySlamming = true
+		velocity.y = slamForce * taggerMovementVariance
+		slamJumpTime = fullSlamJumpTime
+		slamJumpDraining = false
 	
 	if is_on_floor():
-		slam_jump_draining = true
+		slamJumpDraining = true
 	
-	if slam_jump_draining:
-		slam_jump_time -= delta
+	if slamJumpDraining:
+		slamJumpTime -= delta
 #endregion
 	
 #region Slide
-	if coyote_time > 0:
-		if instant_slide == true: #instant slide, only works if first tick on floor
+	if coyoteTime > 0:
+		if instantSlide == true: #instant slide, only works if first tick on floor
 			if Input.is_action_pressed("Down_" + str(GlobalScript.playerInputs[player_ID-1])):
-				if !Input.get_axis("Left_" + str(GlobalScript.playerInputs[player_ID-1]),"Right_" + str(GlobalScript.playerInputs[player_ID-1])) == 0 && slide_cooldown < 0:
-					velocity.x = tagger_movement_variance * Input.get_axis("Left_" + str(GlobalScript.playerInputs[player_ID-1]),"Right_" + str(GlobalScript.playerInputs[player_ID-1])) * slide_x
-					slide_cooldown = full_slide_cooldown
+				if !Input.get_axis("Left_" + str(GlobalScript.playerInputs[player_ID-1]),"Right_" + str(GlobalScript.playerInputs[player_ID-1])) == 0 && slideCooldown < 0:
+					velocity.x = taggerMovementVariance * Input.get_axis("Left_" + str(GlobalScript.playerInputs[player_ID-1]),"Right_" + str(GlobalScript.playerInputs[player_ID-1])) * slideX
+					slideCooldown = fullSlideCooldown
 					spawn_particle("slide")
 		elif Input.is_action_just_pressed("Down_" + str(GlobalScript.playerInputs[player_ID-1])): #regular slide
-			if !Input.get_axis("Left_" + str(GlobalScript.playerInputs[player_ID-1]),"Right_" + str(GlobalScript.playerInputs[player_ID-1])) == 0 && slide_cooldown < 0:
-					velocity.x = tagger_movement_variance * Input.get_axis("Left_" + str(GlobalScript.playerInputs[player_ID-1]),"Right_" + str(GlobalScript.playerInputs[player_ID-1])) * slide_x
-					slide_cooldown = full_slide_cooldown
+			if !Input.get_axis("Left_" + str(GlobalScript.playerInputs[player_ID-1]),"Right_" + str(GlobalScript.playerInputs[player_ID-1])) == 0 && slideCooldown < 0:
+					velocity.x = taggerMovementVariance * Input.get_axis("Left_" + str(GlobalScript.playerInputs[player_ID-1]),"Right_" + str(GlobalScript.playerInputs[player_ID-1])) * slideX
+					slideCooldown = fullSlideCooldown
 					spawn_particle("slide")
 	
-	slide_cooldown -= delta
+	slideCooldown -= delta
 	
 	if is_on_floor():
-		instant_slide = false
+		instantSlide = false
 	else:
-		instant_slide = true
+		instantSlide = true
 	#endregion
 	
 #region HorizontalMovement
 	if is_on_floor():
-		var horizontal_direction = (Input.get_axis("Left_" + str(GlobalScript.playerInputs[player_ID-1]),"Right_" + str(GlobalScript.playerInputs[player_ID-1]))) * floor_speed_multiplier
-		velocity.x = ((velocity.x + (speed * tagger_movement_variance * horizontal_direction)) / friction)
+		var horizontalDirection = (Input.get_axis("Left_" + str(GlobalScript.playerInputs[player_ID-1]),"Right_" + str(GlobalScript.playerInputs[player_ID-1]))) * floorSpeedMultiplier
+		velocity.x = ((velocity.x + (speed * taggerMovementVariance * horizontalDirection)) / friction)
 	else:
-		var horizontal_direction = (Input.get_axis("Left_" + str(GlobalScript.playerInputs[player_ID-1]),"Right_" + str(GlobalScript.playerInputs[player_ID-1])))
-		velocity.x = ((velocity.x + (speed * tagger_movement_variance * horizontal_direction)) / friction)
-	if is_on_wall_only() && velocity.y > 0 && !currently_slamming:
-		velocity.y = velocity.y * wall_slide_speed_multiplier
-	if abs(velocity.x) > max_x_speed:
-		velocity.x = (velocity.x / abs(velocity.x)) * max_x_speed
+		var horizontalDirection = (Input.get_axis("Left_" + str(GlobalScript.playerInputs[player_ID-1]),"Right_" + str(GlobalScript.playerInputs[player_ID-1])))
+		velocity.x = ((velocity.x + (speed * taggerMovementVariance * horizontalDirection)) / friction)
+	if is_on_wall_only() && velocity.y > 0 && !currentlySlamming:
+		velocity.y = velocity.y * wallSlideSpeedMultiplier
+	if abs(velocity.x) > XMaxSpeed:
+		velocity.x = (velocity.x / abs(velocity.x)) * XMaxSpeed
 #endregion
 	
 #region Animations
@@ -274,13 +274,13 @@ func _physics_process(delta): # main loop
 	elif velocity.x < 0:
 		animated_sprite_2d.flip_h = true
 		animated_sprite_2d.offset.x = 0 - abs(animated_sprite_2d.offset.x)
-	if is_on_wall_only() && !currently_slamming:
+	if is_on_wall_only() && !currentlySlamming:
 		animated_sprite_2d.play("Wallslide")
-	elif midair_dash > 0 and !Input.get_axis("Left_" + str(GlobalScript.playerInputs[player_ID-1]),"Right_" + str(GlobalScript.playerInputs[player_ID-1])) == 0:
+	elif midairDash > 0 and !Input.get_axis("Left_" + str(GlobalScript.playerInputs[player_ID-1]),"Right_" + str(GlobalScript.playerInputs[player_ID-1])) == 0:
 		animated_sprite_2d.play("DashAir")
-	elif slide_cooldown > 0 && is_on_floor():
+	elif slideCooldown > 0 && is_on_floor():
 		animated_sprite_2d.play("DashGround")
-	elif currently_slamming:
+	elif currentlySlamming:
 		animated_sprite_2d.play("Slam")
 	elif is_on_floor():
 		if !Input.get_axis("Left_" + str(GlobalScript.playerInputs[player_ID-1]),"Right_" + str(GlobalScript.playerInputs[player_ID-1])) == 0:
@@ -320,23 +320,23 @@ func _physics_process(delta): # main loop
 #endregion
 	
 	cooldown.visible = GlobalScript.lastTagTime + GlobalScript.tagCooldown > GlobalScript.timer and player_ID == GlobalScript.currentTagger
-	var time_remaining = int(round((GlobalScript.lastTagTime + GlobalScript.tagCooldown) - GlobalScript.timer))
-	cooldown.set_text(str(time_remaining+1))
+	var timeRemaining = int(round((GlobalScript.lastTagTime + GlobalScript.tagCooldown) - GlobalScript.timer))
+	cooldown.set_text(str(timeRemaining+1))
 	
 	move_and_slide()
 
 func _on_player_collision_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Players"):
-		var other_player = body # Check other player id
-		var other_player_id = other_player.player_ID
+		var otherPlayer = body # Check other player id
+		var otherPlayerId = otherPlayer.player_ID
 		if player_ID == GlobalScript.currentTagger: #tagger / not
 			await get_tree().create_timer(0.05).timeout #wait to prevent tag-back
-			if GlobalScript.lastTagTime + GlobalScript.tagCooldown < GlobalScript.timer and other_player.is_in_group("Players") and other_player.player_ID != player_ID: #Ignore collisions from own CollisionShape2D and ensure cooldown ended
-				GlobalScript.currentTagger = other_player_id #Tag other player
-				other_player.spawn_particle("tag_player")
+			if GlobalScript.lastTagTime + GlobalScript.tagCooldown < GlobalScript.timer and otherPlayer.is_in_group("Players") and otherPlayer.player_ID != player_ID: #Ignore collisions from own CollisionShape2D and ensure cooldown ended
+				GlobalScript.currentTagger = otherPlayerId #Tag other player
+				otherPlayer.spawn_particle("tag_player")
 				GlobalScript.lastTagTime = GlobalScript.timer
-				if ( GlobalScript.fullGameTime - GlobalScript.timer ) < round_end_buffer: # round end buffer (always give tagger a chance)
-					GlobalScript.timer = GlobalScript.fullGameTime - round_end_buffer
+				if ( GlobalScript.fullGameTime - GlobalScript.timer ) < roundEndBuffer: # round end buffer (always give tagger a chance)
+					GlobalScript.timer = GlobalScript.fullGameTime - roundEndBuffer
 					GlobalScript.lastTagTime = GlobalScript.timer
 				if GlobalScript.currentGameMode == 2: # Hot Potato timer reset
 					GlobalScript.timer = 0

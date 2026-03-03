@@ -40,7 +40,7 @@ var debugHUD = false
 var screenWipe = false
 var doSceneTransition = true
 var fpsCap = "Vsync"
-var vsync = false
+var vSync = false
 
 # Arrays
 var playerPos: Array[Vector2] = [
@@ -109,13 +109,13 @@ func _physics_process(_delta):
 	timer += _delta
 	
 	if str(fpsCap) == "Vsync":
-		if !vsync:
+		if !vSync:
 			DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_ENABLED)
-			vsync = true
+			vSync = true
 	else:
-		if vsync:
+		if vSync:
 			DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_DISABLED)
-			vsync = false
+			vSync = false
 		if str(fpsCap) == "Off":
 			Engine.max_fps = 0
 		else:
