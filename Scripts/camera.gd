@@ -103,8 +103,9 @@ func _process(delta: float) -> void: # main loop
 		shake = shake.lerp(Vector2.ZERO, 0.2 *delta*100) # decay
 	
 	if globalScript.screenShake:
-		position = final_clamped_pos + shake # final pos w/ shake
+		camera2d.offset = shake
 	else:
-		position = final_clamped_pos # final pos
+		camera2d.offset = Vector2.ZERO
+	position = final_clamped_pos # final pos
 	
 	camera2d.zoom = Vector2(zoom, zoom) # zoom
