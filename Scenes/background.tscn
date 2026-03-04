@@ -77,9 +77,20 @@ texture_region_size = Vector2i(32, 32)
 tile_size = Vector2i(32, 32)
 sources/0 = SubResource("TileSetAtlasSource_7ys8v")
 
+[sub_resource type="Gradient" id="Gradient_ltlj5"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_rymcx"]
+gradient = SubResource("Gradient_ltlj5")
+width = 10
+
+[sub_resource type="Gradient" id="Gradient_rymcx"]
+offsets = PackedFloat32Array(0, 0.22325581, 1)
+colors = PackedColorArray(0.36862746, 0.5137255, 0.827451, 0, 0.36862746, 0.5137255, 0.827451, 0.5882353, 1, 1, 1, 0)
+
 [sub_resource type="Gradient" id="Gradient_42s4r"]
-offsets = PackedFloat32Array(0, 0.46575344, 1)
-colors = PackedColorArray(0, 0, 0, 0, 0.44705883, 0.61960787, 1, 0.58431375, 1, 1, 1, 0)
+offsets = PackedFloat32Array(0, 0.22790697, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0.36862746, 0.5137255, 0.827451, 0.39215687, 1, 1, 1, 0)
 
 [node name="background" type="Node2D" unique_id=1998739523]
 process_mode = 3
@@ -157,16 +168,44 @@ energy = 2.0
 texture = ExtResource("6_rymcx")
 
 [node name="Rain" type="CPUParticles2D" parent="." unique_id=1150645047]
-position = Vector2(0, -865)
-amount = 3000
-lifetime = 2.5
+clip_children = 2
+position = Vector2(-1000, -2000)
+amount = 10000
+texture = SubResource("GradientTexture1D_rymcx")
+lifetime = 4.0
 preprocess = 5.0
-speed_scale = 0.5
+speed_scale = 1.5
 emission_shape = 3
-emission_rect_extents = Vector2(4416, 991)
+emission_rect_extents = Vector2(5500, 50)
 direction = Vector2(30, 100)
+gravity = Vector2(250, 500)
 initial_velocity_min = 5.0
 initial_velocity_max = 100.0
+angle_min = 105.0
+angle_max = 115.0
+scale_amount_min = 10.0
+scale_amount_max = 10.0
+color_ramp = SubResource("Gradient_rymcx")
+hue_variation_min = -1.0
+hue_variation_max = 1.0
+
+[node name="RainForeground" type="CPUParticles2D" parent="." unique_id=840167703]
+clip_children = 2
+z_index = 100
+position = Vector2(-1000, -2000)
+amount = 5000
+texture = SubResource("GradientTexture1D_rymcx")
+lifetime = 4.0
+preprocess = 5.0
+speed_scale = 1.5
+emission_shape = 3
+emission_rect_extents = Vector2(5500, 50)
+direction = Vector2(30, 100)
+gravity = Vector2(250, 500)
+initial_velocity_min = 5.0
+initial_velocity_max = 100.0
+angle_min = 105.0
+angle_max = 115.0
 scale_amount_min = 10.0
 scale_amount_max = 10.0
 color_ramp = SubResource("Gradient_42s4r")

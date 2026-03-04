@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://dpy8vug7cq8r"]
+[gd_scene format=3 uid="uid://dpy8vug7cq8r"]
 
 [ext_resource type="Script" uid="uid://cvjdw1rrctbwx" path="res://Scripts/controls_selector.gd" id="1_paagt"]
 [ext_resource type="Texture2D" uid="uid://dtgdqjqiw5jqe" path="res://Assets/Sprites/Menu_Controlls_1.png" id="2_paagt"]
@@ -8,14 +8,14 @@ draw_center = false
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_paagt"]
 
-[node name="Controls selector" type="Control"]
+[node name="Controls selector" type="Control" unique_id=1961266484]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 72.0
 offset_bottom = 56.0
 script = ExtResource("1_paagt")
 
-[node name="Button" type="Button" parent="."]
+[node name="Button" type="Button" parent="." unique_id=1122778745]
 layout_mode = 0
 offset_right = 256.0
 offset_bottom = 256.0

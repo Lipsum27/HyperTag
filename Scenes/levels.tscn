@@ -177,15 +177,12 @@ autoplay = &"move"
 
 [node name="Platform" parent="1/Platforms" unique_id=1183359313 instance=ExtResource("3_uusmb")]
 position = Vector2(-1937, -1362)
-PlatformType = 2
 
 [node name="Platform1" parent="1/Platforms" unique_id=2016946429 instance=ExtResource("3_uusmb")]
 position = Vector2(-1937, -1600)
-PlatformType = 2
 
 [node name="Platform2" parent="1/Platforms" unique_id=775940489 instance=ExtResource("3_uusmb")]
 position = Vector2(1937, -1600)
-PlatformType = 2
 
 [node name="Slimes" type="Node2D" parent="1" unique_id=1962494898]
 

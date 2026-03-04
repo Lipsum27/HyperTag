@@ -30,6 +30,7 @@ func _ready():
 
 func _process(delta: float) -> void:
 	get_node("Rain").visible = globalScript.rain # rain toggle
+	get_node("RainForeground").visible = globalScript.rain # rain toggle
 	time += randf_range(0.5, 2)*delta*100
 	move()
 

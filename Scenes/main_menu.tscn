@@ -29,6 +29,7 @@ script = ExtResource("1_jwap2")
 
 [node name="background" parent="." unique_id=569099898 instance=ExtResource("3_1ehe0")]
 z_index = -1
+position = Vector2(0, 1500)
 
 [node name="UI" type="PanelContainer" parent="." unique_id=2049653286]
 layout_mode = 1

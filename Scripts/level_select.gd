@@ -1,35 +1,30 @@
 extends Node2D
 
 @onready var camera = $"Camera2D"
-@onready var screenBlocker = $"CanvasLayer/blocker"
+@onready var levels = $"Levels"
 const baseCameraZoom = 0.6
-var goalOffset = 0
-var lerpSpeed = 0.3
-const fullOffset = 1800
+var goalOpacity = 1
+var opacityBuffer = 0.1
+var lerpSpeed = 0.1
 
 func _ready() -> void:
 	camera.zoom.x = baseCameraZoom
 	camera.zoom.y = camera.zoom.x
-	screenBlocker.visible = false
 
 func _process(_delta: float) -> void:
-	camera.offset.y = lerp(camera.offset.y, float(goalOffset), lerpSpeed)
 	camera.zoom.y = camera.zoom.x
 	camera.position.x = get_global_mouse_position().x / 2
 	camera.position.y = (get_global_mouse_position().y / 2) - 500
-	
-	if goalOffset != 0 && round(camera.offset.y) > goalOffset-10:
-		#screenBlocker.visible = true
-		#camera.offset.y = -goalOffset
-		#screenBlocker.visible = false
+	levels.modulate.a = lerp(float(levels.modulate.a), float(goalOpacity), lerpSpeed)
+	if levels.modulate.a - opacityBuffer < 0:
+		goalOpacity = 1
 		if globalScript.level == 4:
 			globalScript.level = 1
 		else:
 			globalScript.level += 1
-		goalOffset = 0
 
 func _on_next_lvl_pressed() -> void:
-	goalOffset = fullOffset
+	goalOpacity = 0
 
 func _on_continue_pressed() -> void:
 	globalScript.screenWipe = true
