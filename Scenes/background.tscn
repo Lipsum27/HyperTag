@@ -169,7 +169,7 @@ texture = ExtResource("6_rymcx")
 
 [node name="Rain" type="CPUParticles2D" parent="." unique_id=1150645047]
 clip_children = 2
-position = Vector2(-1000, -2000)
+position = Vector2(-1000, -2200)
 amount = 5000
 texture = SubResource("GradientTexture1D_rymcx")
 lifetime = 4.0
@@ -192,7 +192,7 @@ hue_variation_max = 1.0
 [node name="RainForeground" type="CPUParticles2D" parent="." unique_id=840167703]
 clip_children = 2
 z_index = 100
-position = Vector2(-1000, -2000)
+position = Vector2(-1000, -2200)
 amount = 2000
 texture = SubResource("GradientTexture1D_rymcx")
 lifetime = 4.0

@@ -6,6 +6,7 @@ const baseCameraZoom = 0.6
 var goalOpacity = 1
 var opacityBuffer = 0.1
 var lerpSpeed = 0.1
+var shittyCrashFix = false
 
 func _ready() -> void:
 	camera.zoom.x = baseCameraZoom
