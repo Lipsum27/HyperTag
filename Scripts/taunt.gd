@@ -10,7 +10,8 @@ var targetScale = 0.3
 var directionSelected = false
 var tauntSetup = false
 var spawnedTime:float
-var tauntTimeout = 4
+var tauntTimeout = 1.5
+var lerpSpeed = 20 # /100
 var sets = [
 	"0",
 	"1",
@@ -37,12 +38,12 @@ func _ready() -> void:
 	if globalScript.playerInputs[playerID-1] == 0:
 		queue_free()
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
 	position = globalScript.playerPos[playerID-1]
 	if state == 0:
 		for i in sets.size():
 			get_node(sets[i]).visible = false
-		if Input.is_action_just_pressed("Taunt_" + str(globalScript.playerInputs[playerID-1])):
+		if globalScript.tauntsEnabled && Input.is_action_just_pressed("Taunt_" + str(globalScript.playerInputs[playerID-1])):
 			setBuffer = true
 			swayDistances = []
 			for i in range(8):
@@ -57,7 +58,7 @@ func _process(_delta: float) -> void:
 			get_node(str(currentSet) + "/" + str(i)).visible = true
 			get_node(str(currentSet) + "/" + str(i)).scale = Vector2(5, 5)
 		var currentSetNode = get_node(str(currentSet))
-		currentSetNode.scale = lerp(currentSetNode.scale, Vector2(targetScale, targetScale), 0.2)
+		currentSetNode.scale = lerp(currentSetNode.scale, Vector2(targetScale, targetScale), lerpSpeed * delta)
 		if currentSetNode.scale.x < 0.01 && directionSelected:
 			visible = false
 			tauntSetup = true
@@ -91,7 +92,7 @@ func _process(_delta: float) -> void:
 	if state == 2:
 		var chosenTaunt = get_node(str(currentSet) + "/" + str(selectedDirection))
 		chosenTaunt.position = squarePositions[0]
-		chosenTaunt.scale = lerp(chosenTaunt.scale, Vector2(targetScale, targetScale), 0.2)
+		chosenTaunt.scale = lerp(chosenTaunt.scale, Vector2(targetScale, targetScale), lerpSpeed * delta)
 		modulate.a = 0.8
 		if Input.is_action_just_pressed("Taunt_" + str(globalScript.playerInputs[playerID-1])):
 			targetScale = 0
@@ -106,4 +107,4 @@ func _process(_delta: float) -> void:
 		if chosenTaunt.scale.x < 0.1:
 			state = 0
 		if globalScript.timer > spawnedTime + tauntTimeout:
-			state = 0
+			targetScale = 0

@@ -41,6 +41,7 @@ var screenWipe = false
 var doSceneTransition = true
 var fpsCap = "Vsync"
 var vSync = false
+var tauntsEnabled = true
 
 # Arrays
 var playerPos: Array[Vector2] = [

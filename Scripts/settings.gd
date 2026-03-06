@@ -18,6 +18,7 @@ func _process(_delta: float) -> void: # main loop
 	get_node("PanelContainer/VBoxContainer/Contents/OptionsScroll/Options/Video/BackgroundMovement").text = "Animated\nBackground: " + str(globalScript.backgroundMovement)
 	get_node("PanelContainer/VBoxContainer/Contents/OptionsScroll/Options/Video/DebugHUD").text = "Show Fps: " + str(globalScript.debugHUD)
 	get_node("PanelContainer/VBoxContainer/Contents/OptionsScroll/Options/Video/SceneTransition").text = "Show Scene\nTransition: " + str(globalScript.doSceneTransition)
+	get_node("PanelContainer/VBoxContainer/Contents/OptionsScroll/Options/Gameplay/Taunts").text = "Taunts: " + str(globalScript.tauntsEnabled)
 	if OS.has_feature("web"):
 		get_node("PanelContainer/VBoxContainer/Contents/OptionsScroll/Options/Video/FpsCap").add_theme_color_override("font_color", Color("5e7ca87f"))
 		get_node("PanelContainer/VBoxContainer/Contents/OptionsScroll/Options/Video/FpsCap").text = "Cap Fps: Unavailable\non web (Vsync)"
@@ -93,3 +94,6 @@ func _on_fps_cap_pressed() -> void:
 			globalScript.fpsCap = globalScript.fpsCapValues[0]
 		else:
 			globalScript.fpsCap = globalScript.fpsCapValues[currentCap+1]
+
+func _on_taunts_pressed() -> void:
+	globalScript.tauntsEnabled = !globalScript.tauntsEnabled
