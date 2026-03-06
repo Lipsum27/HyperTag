@@ -26,7 +26,7 @@ func _ready():
 		sin_values.append(randf_range(0.005, 0.02))
 
 	for i in range(6):
-		sin_values.append(randf_range(-20, -5))
+		sin_values.append(randf_range(-5, 5))
 
 func _process(delta: float) -> void:
 	get_node("Rain").visible = globalScript.rain # rain toggle
