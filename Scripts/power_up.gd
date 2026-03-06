@@ -120,7 +120,7 @@ func _process(delta: float) -> void:
 		particle.emitting = false
 
 func _on_collision_body_entered(body: Node2D) -> void:
-	if body.is_in_group("Players") and !activated:
+	if body.is_in_group("Players") and !activated and unloadTime - 19.5 < globalScript.timer:
 		scale.x = 1
 		scale.y = 1
 		targetSize = 0

@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dkduahkuobrk8" path="res://Scripts/game.gd" id="1_1l0tm"]
 [ext_resource type="PackedScene" uid="uid://2s60sjhjilwr" path="res://Scenes/player.tscn" id="2_4joj6"]
+[ext_resource type="PackedScene" uid="uid://cwlntqpj0u5ph" path="res://Scenes/taunt.tscn" id="3_1l0tm"]
 [ext_resource type="Script" uid="uid://i32a8adjorp5" path="res://Scripts/camera.gd" id="4_g0w0c"]
 [ext_resource type="PackedScene" uid="uid://df462wvm04gre" path="res://Scenes/background.tscn" id="4_wowpa"]
 [ext_resource type="PackedScene" uid="uid://c1eshrn5qw2od" path="res://Scenes/hud.tscn" id="5_i6g32"]
@@ -63,3 +64,22 @@ editor_draw_drag_margin = true
 z_index = -10
 
 [node name="HUD" parent="." unique_id=702859260 instance=ExtResource("5_i6g32")]
+
+[node name="Taunt1" parent="." unique_id=1817096293 instance=ExtResource("3_1l0tm")]
+position = Vector2(609, -465)
+scale = Vector2(2, 2)
+
+[node name="Taunt2" parent="." unique_id=437268142 instance=ExtResource("3_1l0tm")]
+position = Vector2(609, -465)
+scale = Vector2(2, 2)
+playerID = 2
+
+[node name="Taunt3" parent="." unique_id=108905053 instance=ExtResource("3_1l0tm")]
+position = Vector2(609, -465)
+scale = Vector2(2, 2)
+playerID = 3
+
+[node name="Taunt4" parent="." unique_id=318744225 instance=ExtResource("3_1l0tm")]
+position = Vector2(609, -465)
+scale = Vector2(2, 2)
+playerID = 4
