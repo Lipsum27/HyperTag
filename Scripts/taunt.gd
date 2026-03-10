@@ -5,7 +5,7 @@ var state = 0 # 0 = waiting, 1 = selecting, 2 = taunting
 var currentSet = 0
 var selectedDirection
 var setBuffer = false
-var swayValues = [10, 30, 0.5, 1.5]
+var swayValues = [5, 20, 0.75, 1.25]
 var targetScale = 0.3
 var directionSelected = false
 var tauntSetup = false
@@ -29,7 +29,8 @@ var squarePositions = [
 	Vector2(0, -175),
 	Vector2(175, 0),
 	Vector2(0, 175),
-	Vector2(-175, 0)
+	Vector2(-175, 0),
+	Vector2(0, -150)
 ]
 
 func _ready() -> void:
@@ -91,7 +92,7 @@ func _process(delta: float) -> void:
 				targetScale = 0
 	if state == 2:
 		var chosenTaunt = get_node(str(currentSet) + "/" + str(selectedDirection))
-		chosenTaunt.position = squarePositions[0]
+		chosenTaunt.position = squarePositions[4]
 		chosenTaunt.scale = lerp(chosenTaunt.scale, Vector2(targetScale, targetScale), lerpSpeed * delta)
 		modulate.a = 0.8
 		if Input.is_action_just_pressed("Taunt_" + str(globalScript.playerInputs[playerID-1])):

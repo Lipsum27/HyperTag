@@ -167,9 +167,9 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -20.0
-offset_right = 20.0
-offset_bottom = 40.0
+offset_left = -232.0
+offset_right = 232.0
+offset_bottom = 280.0
 grow_horizontal = 2
 theme = ExtResource("3_bjfho")
 theme_override_styles/panel = SubResource("StyleBoxFlat_6fbih")
@@ -184,7 +184,7 @@ layout_mode = 2
 
 [node name="Time" type="Label" parent="Control/HUD/VBoxContainer" unique_id=1472087630]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.36862746, 0.4862745, 0.65882355, 1)
+theme_override_constants/outline_size = 40
 theme_override_font_sizes/font_size = 128
 text = "Time"
 horizontal_alignment = 1
@@ -273,6 +273,7 @@ focus_previous = NodePath("../Resume")
 text = "Options"
 flat = true
 script = ExtResource("8_43w4t")
+cooldown = 1.0
 
 [node name="Quit to Menu" type="Button" parent="Control/Pause/VBoxContainer" unique_id=504104637]
 z_index = 3
@@ -284,6 +285,7 @@ focus_previous = NodePath("../Settings")
 text = "Quit to Menu"
 flat = true
 script = ExtResource("8_43w4t")
+useOnce = true
 
 [node name="Quit Game" type="Button" parent="Control/Pause/VBoxContainer" unique_id=245637651]
 z_index = 3
@@ -295,6 +297,7 @@ focus_previous = NodePath("../Quit to Menu")
 text = "Quit Game"
 flat = true
 script = ExtResource("8_43w4t")
+useOnce = true
 
 [node name="GameOver" type="PanelContainer" parent="Control" unique_id=726228766]
 visible = false
@@ -334,6 +337,7 @@ focus_previous = NodePath("../Quit Game")
 text = "Play Again"
 flat = true
 script = ExtResource("8_43w4t")
+useOnce = true
 
 [node name="Quit to Menu" type="Button" parent="Control/GameOver/VBoxContainer" unique_id=536181717]
 z_index = 3
@@ -345,6 +349,7 @@ focus_previous = NodePath("../Play Again")
 text = "Quit to Menu"
 flat = true
 script = ExtResource("8_43w4t")
+useOnce = true
 
 [node name="Quit Game" type="Button" parent="Control/GameOver/VBoxContainer" unique_id=612160307]
 z_index = 3
@@ -356,6 +361,7 @@ focus_previous = NodePath("../Quit to Menu")
 text = "Quit Game"
 flat = true
 script = ExtResource("8_43w4t")
+useOnce = true
 
 [node name="MarginContainer2" type="MarginContainer" parent="Control/GameOver/VBoxContainer" unique_id=1803458085]
 custom_minimum_size = Vector2(0, 64)
@@ -391,6 +397,7 @@ text = "P4: 0"
 horizontal_alignment = 1
 
 [node name="Loading" type="PanelContainer" parent="Control" unique_id=1740030306]
+visible = false
 z_index = 100
 layout_mode = 0
 offset_left = -6.0

@@ -51,6 +51,7 @@ func _on_close_pressed() -> void:
 	globalScript.screenWipe = true
 	await globalScript.sceneTransitionCompleted
 	globalScript.settingsVisible = false
+	#get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
 	queue_free()
 
 func _on_rain_toggle_pressed() -> void:

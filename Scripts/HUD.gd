@@ -14,9 +14,16 @@ extends CanvasLayer
 
 const settingsScene = preload("res://Scenes/settings.tscn")
 const powerUpSize = Vector2(144, 144)
+const  lerpSpeed = 0.025
 
 var scoresUpdated = false
 var minSize = 25
+var prevTime:int = 0
+var sizeMult:float = 1
+var maxScale = 0.5 # added to 1
+
+var goalHudOpacity = 1
+var hudOpacityLerpSpeed = 0.2
 
 func _ready():
 	globalScript.song = 2
@@ -74,26 +81,31 @@ func update_scores(TimerEnded:bool):
 	#endregion
 	else:
 		#region MidGame
-		timerHUD.modulate.a = 0.5
-		scoreHUD1.modulate.a = 0.5
-		scoreHUD2.modulate.a = 0.5
-		scoreHUD3.modulate.a = 0.5
-		scoreHUD4.modulate.a = 0.5
 		scoreHUD1.set_text("") # Wipe
 		scoreHUD2.set_text("")
 		scoreHUD3.set_text("")
 		scoreHUD4.set_text("")
-		if globalScript.playerScores[0] != 0:
-			scoreHUD1.set_text(str(globalScript.playerScores[0])) # Set Label if not 0
-		if globalScript.playerScores[1] != 0:
-			scoreHUD2.set_text(str(globalScript.playerScores[1])) # Set Label if not 0
-		if globalScript.playerScores[2] != 0:
-			scoreHUD3.set_text(str(globalScript.playerScores[2])) # Set Label if not 0
-		if globalScript.playerScores[3] != 0:
-			scoreHUD4.set_text(str(globalScript.playerScores[3])) # Set Label if not 0
+		for i in 4:
+			if globalScript.playerScores[i] != 0:
+				scoreHUD1.set_text(str(globalScript.playerScores[i]))
 #endregion
 
 func _process(delta: float) -> void:
+	
+	mainHUD.modulate.a = lerp(float(mainHUD.modulate.a), float(goalHudOpacity), hudOpacityLerpSpeed)
+	
+	if globalScript.fadeHud:
+		goalHudOpacity = 0.2
+	else:
+		goalHudOpacity = 1
+	
+	if prevTime != int(globalScript.timer):
+		sizeMult = (1 + maxScale * (1 -(globalScript.fullGameTime - globalScript.timer) / globalScript.fullGameTime ))
+		prevTime = int(globalScript.timer)
+		
+	sizeMult = lerp(sizeMult, 1.0, lerpSpeed)
+	
+	get_node("Control/HUD/VBoxContainer/Time").add_theme_font_size_override("font_size", 128 * sizeMult)
 	
 	if globalScript.timer > globalScript.fullGameTime: # Game Ends
 		# After game ends

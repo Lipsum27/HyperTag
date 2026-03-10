@@ -8,7 +8,6 @@ extends CharacterBody2D
 @onready var dash_particles = $Dash
 @onready var slide_particles = $Slide
 @onready var tag_particles = $Tag
-@onready var cooldown = $Cooldown
 #endregion
 
 #region variables
@@ -319,9 +318,7 @@ func _physics_process(delta): # main loop
 			modulate = Color.from_hsv(0.589, ((sin(globalScript.timer * 8) + 1) / 4), 1.0, 1.0)
 #endregion
 	
-	cooldown.visible = globalScript.lastTagTime + globalScript.tagCooldown > globalScript.timer and player_ID == globalScript.currentTagger
 	var timeRemaining = int(round((globalScript.lastTagTime + globalScript.tagCooldown) - globalScript.timer))
-	cooldown.set_text(str(timeRemaining+1))
 	
 	move_and_slide()
 

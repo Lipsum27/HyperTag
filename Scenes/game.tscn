@@ -8,8 +8,12 @@
 [ext_resource type="PackedScene" uid="uid://c1eshrn5qw2od" path="res://Scenes/hud.tscn" id="5_i6g32"]
 [ext_resource type="PackedScene" uid="uid://bd87d6f7hed6s" path="res://Scenes/levels.scn" id="7_1l0tm"]
 
-[node name="Game" type="Node2D" unique_id=1705063026]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1l0tm"]
+size = Vector2(312, 134)
+
+[node name="Game" type="Node2D" unique_id=1705063026 node_paths=PackedStringArray("camera")]
 script = ExtResource("1_1l0tm")
+camera = NodePath("CameraController/Camera2D")
 
 [node name="Player" parent="." unique_id=1731294324 instance=ExtResource("2_4joj6")]
 z_index = 5
@@ -44,8 +48,9 @@ script = ExtResource("4_g0w0c")
 margin = Vector2(400, 250)
 
 [node name="Camera2D" type="Camera2D" parent="CameraController" unique_id=1376396855]
-zoom = Vector2(2.5, 2.5)
+physics_interpolation_mode = 1
 process_callback = 0
+limit_enabled = false
 limit_left = -2684
 limit_top = -2172
 limit_right = 2684
@@ -58,28 +63,44 @@ drag_bottom_margin = 1.0
 editor_draw_limits = true
 editor_draw_drag_margin = true
 
+[node name="hudFade" type="Node2D" parent="CameraController/Camera2D" unique_id=1963494752]
+
+[node name="area2d" type="Area2D" parent="CameraController/Camera2D/hudFade" unique_id=1433191323]
+position = Vector2(0.20004272, -216.48004)
+scale = Vector2(2.5589745, 2.6047754)
+collision_layer = 3
+collision_mask = 3
+
+[node name="collisionShape2d" type="CollisionShape2D" parent="CameraController/Camera2D/hudFade/area2d" unique_id=867278421]
+position = Vector2(-0.078173004, -57.402237)
+shape = SubResource("RectangleShape2D_1l0tm")
+
 [node name="Levels" parent="." unique_id=1173681614 instance=ExtResource("7_1l0tm")]
 
 [node name="background" parent="." unique_id=483603237 instance=ExtResource("4_wowpa")]
 z_index = -10
+position = Vector2(-15, 0)
 
 [node name="HUD" parent="." unique_id=702859260 instance=ExtResource("5_i6g32")]
 
 [node name="Taunt1" parent="." unique_id=1817096293 instance=ExtResource("3_1l0tm")]
-position = Vector2(609, -465)
+z_index = 10
 scale = Vector2(2, 2)
 
 [node name="Taunt2" parent="." unique_id=437268142 instance=ExtResource("3_1l0tm")]
-position = Vector2(609, -465)
+z_index = 10
 scale = Vector2(2, 2)
 playerID = 2
 
 [node name="Taunt3" parent="." unique_id=108905053 instance=ExtResource("3_1l0tm")]
-position = Vector2(609, -465)
+z_index = 10
 scale = Vector2(2, 2)
 playerID = 3
 
 [node name="Taunt4" parent="." unique_id=318744225 instance=ExtResource("3_1l0tm")]
-position = Vector2(609, -465)
+z_index = 10
 scale = Vector2(2, 2)
 playerID = 4
+
+[connection signal="body_entered" from="CameraController/Camera2D/hudFade/area2d" to="." method="_on_hud_hider_body_entered"]
+[connection signal="body_exited" from="CameraController/Camera2D/hudFade/area2d" to="." method="_on_area_2d_body_exited"]

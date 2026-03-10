@@ -83,6 +83,7 @@ theme_override_font_sizes/font_size = 80
 text = "Start"
 flat = true
 script = ExtResource("5_opfnp")
+useOnce = true
 
 [node name="Settings" type="Button" parent="UI/VBoxContainer/Interface/Main Interface" unique_id=854246465]
 layout_mode = 2
@@ -90,6 +91,7 @@ theme_override_font_sizes/font_size = 80
 text = "Options"
 flat = true
 script = ExtResource("5_opfnp")
+cooldown = 1.0
 
 [node name="Quit" type="Button" parent="UI/VBoxContainer/Interface/Main Interface" unique_id=1646573684]
 layout_mode = 2
@@ -97,6 +99,7 @@ theme_override_font_sizes/font_size = 80
 text = "Quit"
 flat = true
 script = ExtResource("5_opfnp")
+useOnce = true
 
 [node name="Margin3" type="MarginContainer" parent="UI/VBoxContainer/Interface/Main Interface" unique_id=1592454309]
 custom_minimum_size = Vector2(0, 64)

@@ -5,7 +5,6 @@
 [ext_resource type="Texture2D" uid="uid://bals6kpkjo1vc" path="res://Assets/Sprites/ring.png" id="3_6t5aa"]
 [ext_resource type="Texture2D" uid="uid://crqujcs147gek" path="res://Assets/Sprites/player_particles.png" id="4_vgqql"]
 [ext_resource type="Texture2D" uid="uid://66fy711hsyr6" path="res://Assets/Sprites/player_particles_3.png" id="5_fkybt"]
-[ext_resource type="FontFile" uid="uid://c8ip11ho7rpv8" path="res://Assets/fonts/PixelOperator8.ttf" id="6_x3wgy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fclrm"]
 size = Vector2(22, 28)
@@ -327,10 +326,6 @@ colors = PackedColorArray(18.892157, 18.892157, 18.892157, 0.39215687, 18.892157
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x3wgy"]
 size = Vector2(22, 42)
 
-[sub_resource type="Theme" id="Theme_3smsa"]
-Label/constants/outline_size = 5
-Label/fonts/font = ExtResource("6_x3wgy")
-
 [node name="Player" type="CharacterBody2D" unique_id=74572184]
 script = ExtResource("1_xvrkq")
 
@@ -467,19 +462,5 @@ collision_mask = 3
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerCollision" unique_id=1284182649 groups=["Players"]]
 position = Vector2(0, 3)
 shape = SubResource("RectangleShape2D_x3wgy")
-
-[node name="Cooldown" type="Label" parent="." unique_id=1166917911]
-z_index = 100
-offset_left = -45.0
-offset_top = -32.0
-offset_right = 411.0
-offset_bottom = 40.0
-scale = Vector2(0.2, 0.2)
-theme = SubResource("Theme_3smsa")
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 20
-theme_override_font_sizes/font_size = 64
-text = "1,2,3"
-horizontal_alignment = 1
 
 [connection signal="body_entered" from="PlayerCollision" to="." method="_on_player_collision_body_entered"]
