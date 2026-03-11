@@ -45,17 +45,17 @@ player_ID = 4
 [node name="CameraController" type="Node2D" parent="." unique_id=1034363699]
 position = Vector2(0, -50)
 script = ExtResource("4_g0w0c")
-margin = Vector2(400, 250)
 
 [node name="Camera2D" type="Camera2D" parent="CameraController" unique_id=1376396855]
 physics_interpolation_mode = 1
+zoom = Vector2(0.8, 0.8)
 process_callback = 0
-limit_enabled = false
 limit_left = -2684
 limit_top = -2172
 limit_right = 2684
 limit_bottom = 184
 limit_smoothed = true
+position_smoothing_enabled = true
 drag_left_margin = 1.0
 drag_top_margin = 1.0
 drag_right_margin = 1.0

@@ -1,98 +1,53 @@
 extends Node2D
 
-@onready var camera2d: Camera2D = $Camera2D
-@export var zoom = 1.5#: float = .8
-@export var minZoom: float = .8#0.355
-@export var maxZoom: float = 2.8
-@export var lerpSpeed: float = 0.08
-@export var margin = Vector2(400, 200)
-@export var zoomSpeed = .08
-@export var singlePlayerZoom = 1.5
-@onready var screenSize = get_viewport_rect().size
+var corners = [Vector2.ZERO, Vector2.ZERO] # min, max
+var margains = Vector2(500, 300) # horizontal, vertical
+var shake:Vector2
 
-# Map edges
-var worldLimits = [-2684.0, 2684.0, -2172.0, 184.0] # Left, right, top, bottom
+# Zoom constraints
+var min_zoom = 0.36
+var max_zoom = 1.0
 
-var shake: Vector2 = Vector2.ZERO
-var targetPosition: Vector2 = Vector2.ZERO
-var maxX
-var maxY
-var minX
-var minY
+@onready var camera = $Camera2D
 
-func _ready(): # setup
-	camera2d.zoom = Vector2(zoom, zoom) # default zoom
-	camera2d.limit_smoothed = false # disable default camera limits
-	if globalScript.playerCount == 1:
-		maxZoom = singlePlayerZoom
-		minZoom = singlePlayerZoom
-
-func _process(delta: float) -> void: # main loop
-	# Start with the bounding box around the first player's position
-	var playerPositions = globalScript.playerPos
-	var playerCount = globalScript.playerCount
-	var r = Rect2(playerPositions[0], Vector2.ONE) # Starts 'r' at player 1's position
+func _process(delta: float) -> void:
 	
-	# Expand the rectangle to include all player positions
-	for i in range(1, playerCount): # Start from the second player (index 1)
-		r = r.expand(playerPositions[i])
-		
-	r = r.grow_individual(margin.x, margin.y, margin.x, margin.y)
+	calculate_borders()
 	
-	var z
-	if r.size.x > r.size.y * screenSize.aspect():
-		z = 1.0 / clampf(r.size.x / screenSize.x, minZoom, maxZoom)
+	position = ( corners[0] + corners[1] ) / 2
+	
+	if 1 == globalScript.playerCount: # single player camera
+		camera.zoom = camera.zoom.lerp(Vector2(0.75, 0.75), 0.1)
 	else:
-		z = 1.0 / clampf(r.size.y / screenSize.y, minZoom, maxZoom)
+		handle_zoom(delta)
 	
-	zoom = lerp(zoom, z, zoomSpeed *delta*100) 
+	handle_shake(delta)
+
+func calculate_borders():
+	corners[0] = globalScript.playerPos[0]
+	corners[1] = globalScript.playerPos[0]
 	
-	# --- 2. Center Position Calculation ---
-	var new_targetPosition: Vector2 = Vector2.ZERO
+	for i in globalScript.playerCount:
+		var pos = globalScript.playerPos[i]
+		corners[0].x = min(corners[0].x, pos.x)
+		corners[0].y = min(corners[0].y, pos.y)
+		corners[1].x = max(corners[1].x, pos.x)
+		corners[1].y = max(corners[1].y, pos.y)
+
+func handle_zoom(delta):
+	var screen_size = get_viewport().get_visible_rect().size
 	
-	if playerCount > 0:
-		maxX = playerPositions[0].x
-		minX = playerPositions[0].x
-		maxY = playerPositions[0].y
-		minY = playerPositions[0].y
-	for i in range(globalScript.playerCount):
-		# Check Max X
-		if globalScript.playerPos[i].x > maxX:
-			maxX = globalScript.playerPos[i].x
-		
-		# Check Min X
-		if globalScript.playerPos[i].x < minX:
-			minX = globalScript.playerPos[i].x
-			
-		# Check Max Y
-		if globalScript.playerPos[i].y > maxY:
-			maxY = globalScript.playerPos[i].y
-			
-		# Check Min Y
-		if globalScript.playerPos[i].y < minY:
-			minY = globalScript.playerPos[i].y
-		new_targetPosition = Vector2((maxX + minX) / 2.0, (maxY + minY) / 2.0)
+	var player_area_x = (corners[1].x - corners[0].x) + (margains.x * 2)
+	var player_area_y = (corners[1].y - corners[0].y) + (margains.y * 2)
 	
-	# Smoothly move the camera's target to the new center
-	targetPosition = targetPosition.lerp(new_targetPosition, lerpSpeed *delta*100)
+	var target_zoom_val = min(screen_size.x / player_area_x, screen_size.y / player_area_y)
 	
-	var viewport_size = get_viewport_rect().size / zoom # find window size
-	var half_width = viewport_size.x / 2.0
-	var half_height = viewport_size.y / 2.0
+	target_zoom_val = clamp(target_zoom_val, min_zoom, max_zoom)
 	
-	var clamped_x = clampf( # clamp x
-		targetPosition.x, 
-		worldLimits[0] + half_width, 
-		worldLimits[1] - half_width
-	)
-	var clamped_y = clampf( # clamp y
-		targetPosition.y, 
-		worldLimits[2] + half_height, 
-		worldLimits[3] - half_height
-	)
-	
-	var final_clamped_pos = Vector2(clamped_x, clamped_y)
-	
+	var target_zoom = Vector2(target_zoom_val, target_zoom_val)
+	camera.zoom =  camera.zoom.lerp(target_zoom, 0.1)
+
+func handle_shake(delta):
 	if globalScript.shakeDuration > 0: # Shake
 		globalScript.shakeDuration -= delta
 		shake = Vector2(
@@ -103,9 +58,6 @@ func _process(delta: float) -> void: # main loop
 		shake = shake.lerp(Vector2.ZERO, 0.2 *delta*100) # decay
 	
 	if globalScript.screenShake:
-		camera2d.offset = shake
+		camera.offset = shake
 	else:
-		camera2d.offset = Vector2.ZERO
-	position = final_clamped_pos # final pos
-	
-	camera2d.zoom = Vector2(zoom, zoom) # zoom
+		camera.offset = Vector2.ZERO
