@@ -293,6 +293,7 @@ func _physics_process(delta): # main loop
 			animated_sprite_2d.play("Rise")
 		else:
 			animated_sprite_2d.play("Fall")
+	print("test")
 #endregion
 	
 #region Broadcast

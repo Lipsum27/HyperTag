@@ -38,6 +38,8 @@ window/vsync/vsync_mode=0
 naming/node_name_casing=1
 naming/scene_name_casing=4
 naming/script_name_casing=4
+version_control/plugin_name="GitPlugin"
+version_control/autoload_on_startup=true
 
 [editor_plugins]
 
