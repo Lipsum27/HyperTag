@@ -19,7 +19,7 @@ func _process(delta: float) -> void:
 	if 1 == globalScript.playerCount: # single player camera
 		camera.zoom = camera.zoom.lerp(Vector2(0.75, 0.75), 0.1)
 	else:
-		handle_zoom(delta)
+		handle_zoom()
 	
 	handle_shake(delta)
 
@@ -34,7 +34,7 @@ func calculate_borders():
 		corners[1].x = max(corners[1].x, pos.x)
 		corners[1].y = max(corners[1].y, pos.y)
 
-func handle_zoom(delta):
+func handle_zoom():
 	var screen_size = get_viewport().get_visible_rect().size
 	
 	var player_area_x = (corners[1].x - corners[0].x) + (margains.x * 2)

@@ -29,7 +29,7 @@ func _on_button_pressed() -> void:
 	
 	var new_input_value = globalScript.playerInputs[ID] + 1
 	
-	if new_input_value > 5:
+	if new_input_value > 6:
 		new_input_value = 0
 	
 	var is_assigned = false
