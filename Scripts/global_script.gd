@@ -24,7 +24,7 @@ var timer: float = 0
 var fullGameTime = 60
 var roundTime:float
 var lastTagTime = 0
-var tagCooldown = 0.5
+var tagCooldown = 2
 var rain:bool = true
 var volume:float = linear_to_db(0.25)
 var settingsVisible:bool = false

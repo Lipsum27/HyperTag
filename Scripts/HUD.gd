@@ -80,15 +80,11 @@ func update_scores(TimerEnded:bool):
 		scoresUpdated = true
 	#endregion
 	else:
-		#region MidGame
-		scoreHUD1.set_text("") # Wipe
-		scoreHUD2.set_text("")
-		scoreHUD3.set_text("")
-		scoreHUD4.set_text("")
 		for i in 4:
 			if globalScript.playerScores[i] != 0:
-				scoreHUD1.set_text(str(globalScript.playerScores[i]))
-#endregion
+				get("scoreHUD" + str(i+1)).set_text(str(globalScript.playerScores[i]))
+			else:
+				get("scoreHUD" + str(i+1)).set_text("")
 
 func _process(delta: float) -> void:
 	

@@ -50,6 +50,7 @@ var slideCooldown = 0
 var midairDash = 0
 var instantSlide:bool
 var roundEndBuffer:int = 5
+var flickerSpeed = 8
 #endregion
 
 func _ready(): # setup
@@ -303,22 +304,25 @@ func _physics_process(delta): # main loop
 	if player_ID == 1:
 		modulate = Color.from_hsv(0.0, 0.5, 1.0, 1.0)
 		if player_ID == globalScript.currentTagger:
-			modulate = Color.from_hsv(0.0, ((sin(globalScript.timer * 8) + 1) / 4), 1.0, 1.0)
+			modulate = Color.from_hsv(0.0, ((sin(globalScript.timer * flickerSpeed) + 1) / 4), 1.0, 1.0)
 	if player_ID == 2:
 		modulate = Color.from_hsv(0.169, 0.5, 1.0, 1.0)
 		if player_ID == globalScript.currentTagger:
-			modulate = Color.from_hsv(0.169, ((sin(globalScript.timer * 8) + 1) / 4), 1.0, 1.0)
+			modulate = Color.from_hsv(0.169, ((sin(globalScript.timer * flickerSpeed) + 1) / 4), 1.0, 1.0)
 	if player_ID == 3:
 		modulate = Color.from_hsv(0.326, 0.5, 1.0, 1.0)
 		if player_ID == globalScript.currentTagger:
-			modulate = Color.from_hsv(0.326, ((sin(globalScript.timer * 8) + 1) / 4), 1.0, 1.0)
+			modulate = Color.from_hsv(0.326, ((sin(globalScript.timer * flickerSpeed) + 1) / 4), 1.0, 1.0)
 	if player_ID == 4:
 		modulate = Color.from_hsv(0.589, 0.5, 1.0, 1.0)
 		if player_ID == globalScript.currentTagger:
-			modulate = Color.from_hsv(0.589, ((sin(globalScript.timer * 8) + 1) / 4), 1.0, 1.0)
+			modulate = Color.from_hsv(0.589, ((sin(globalScript.timer * flickerSpeed) + 1) / 4), 1.0, 1.0)
 #endregion
 	
-	var timeRemaining = int(round((globalScript.lastTagTime + globalScript.tagCooldown) - globalScript.timer))
+	if globalScript.lastTagTime + globalScript.tagCooldown < globalScript.timer:
+		flickerSpeed = 8
+	else:
+		flickerSpeed = 24
 	
 	move_and_slide()
 
