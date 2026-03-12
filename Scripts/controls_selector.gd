@@ -2,6 +2,7 @@ extends Control
 
 @export var ID = 1
 @onready var selector = $Button
+var controls = 6 # how many
 
 func _ready():
 	selector.modulate = Color.from_hsv(0.0, 0.0, 1.0, 0.196)
@@ -17,42 +18,42 @@ func _physics_process(_delta):
 		selector.modulate.a = 1.0
 
 func _on_button_pressed() -> void:
-	for i in range(globalScript.playerInputs.size()): # Loop through playerInputs
-		if ID == i: # Reach player
-			break # Continue as usual
-		if 0 == globalScript.playerInputs[i]: # Reach empty slot
-			return # Stop script
+	for i in range(globalScript.playerInputs.size()):
+		if ID == i:
+			break
+		if 0 == globalScript.playerInputs[i]:
+			return
 	
 	var new_input_value = globalScript.playerInputs[ID] + 1
 	
-	if new_input_value > 6:
+	if new_input_value > controls:
 		new_input_value = 0
 	
 	var is_assigned = false
 	
 	while true:
-		is_assigned = false # if false, new value fine, will be set to true if issue found
+		is_assigned = false
 		
 		if new_input_value == 0: # Switch to 0
-			for i in range(globalScript.playerInputs.size() - (ID+1)): # 1 offset to avoid checking own value
+			for i in range(globalScript.playerInputs.size() - (ID+1)):
 				if  globalScript.playerInputs[i+ID+1] > 0:
 					is_assigned = true
-					break # leave loop
+					break
 		
-		else: # Switch to anything else
-			for i in range(globalScript.playerInputs.size()): # loop through inputs
-				if i == ID: # don't check own value
+		else:
+			for i in range(globalScript.playerInputs.size()):
+				if i == ID:
 					continue
 				
-				if globalScript.playerInputs[i] == new_input_value: # conflict found
+				if globalScript.playerInputs[i] == new_input_value:
 					is_assigned = true
-					break # conflict found
+					break
 		
-		if is_assigned: # Conflict found, repeat with next value
+		if is_assigned:
 			new_input_value += 1 
-			if new_input_value > 5:
+			if new_input_value > controls:
 				new_input_value = 0
-		else: # No issue
+		else:
 			break
 	
 	if ID == 0 and new_input_value == 0:

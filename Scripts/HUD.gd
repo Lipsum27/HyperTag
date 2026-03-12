@@ -1,16 +1,6 @@
 extends CanvasLayer
 
-@onready var scoreLabel = $Control/GameOver/VBoxContainer/Score_Update
-@onready var scoreLabel1 = $Control/GameOver/VBoxContainer/Score_Update1
-@onready var scoreLabel2 = $Control/GameOver/VBoxContainer/Score_Update2
-@onready var scoreLabel3 = $Control/GameOver/VBoxContainer/Score_Update3
-@onready var scoreLabel4 = $Control/GameOver/VBoxContainer/Score_Update4
 @onready var mainHUD = $Control/HUD
-@onready var timerHUD = $Control/HUD/VBoxContainer/Time
-@onready var scoreHUD1 = $Control/HUD/VBoxContainer/HBoxContainer/P1
-@onready var scoreHUD2 = $Control/HUD/VBoxContainer/HBoxContainer/P2
-@onready var scoreHUD3 = $Control/HUD/VBoxContainer/HBoxContainer/P3
-@onready var scoreHUD4 = $Control/HUD/VBoxContainer/HBoxContainer/P4
 
 const settingsScene = preload("res://Scenes/settings.tscn")
 const powerUpSize = Vector2(144, 144)
@@ -61,30 +51,20 @@ func update_scores(TimerEnded:bool):
 				globalScript.playerScores[2] += 1
 			if globalScript.currentTagger != 4 && globalScript.playerCount > 3:
 				globalScript.playerScores[3] += 1
-		scoreLabel1.set_text("")
-		scoreLabel2.set_text("")
-		scoreLabel3.set_text("")
-		scoreLabel4.set_text("")
-		if globalScript.playerCount == 2:
-			scoreLabel1.set_text("P1: " + str(globalScript.playerScores[0]))
-			scoreLabel2.set_text("P2: " + str(globalScript.playerScores[1]))
-		if globalScript.playerCount == 3:
-			scoreLabel1.set_text("P1: " + str(globalScript.playerScores[0]))
-			scoreLabel2.set_text("P2: " + str(globalScript.playerScores[1]))
-			scoreLabel3.set_text("P3: " + str(globalScript.playerScores[2]))
-		if globalScript.playerCount == 4:
-			scoreLabel1.set_text("P1: " + str(globalScript.playerScores[0]))
-			scoreLabel2.set_text("P2: " + str(globalScript.playerScores[1]))
-			scoreLabel3.set_text("P3: " + str(globalScript.playerScores[2]))
-			scoreLabel4.set_text("P4: " + str(globalScript.playerScores[3]))
+		
+		for i in 4:
+			if i < globalScript.playerCount:
+				get_node("Control/GameOver/VBoxContainer/Score_Update" + str(i+1)).set_text("P" + str(i+1) + ": " + str(globalScript.playerScores[i]))
+			else:
+				get_node("Control/GameOver/VBoxContainer/Score_Update" + str(i+1)).set_text("")
 		scoresUpdated = true
 	#endregion
 	else:
 		for i in 4:
 			if globalScript.playerScores[i] != 0:
-				get("scoreHUD" + str(i+1)).set_text(str(globalScript.playerScores[i]))
+				get_node("Control/HUD/VBoxContainer/HBoxContainer/P" + str(i+1)).set_text(str(globalScript.playerScores[i]))
 			else:
-				get("scoreHUD" + str(i+1)).set_text("")
+				get_node("Control/HUD/VBoxContainer/HBoxContainer/P" + str(i+1)).set_text("")
 
 func _process(delta: float) -> void:
 	
@@ -122,7 +102,7 @@ func _process(delta: float) -> void:
 		get_node("Control/GameOver").visible = false # Hide game over menu
 		
 		get_node("Control/Pause").visible = get_tree().paused and !globalScript.settingsVisible # Show menu when paused
-		timerHUD.set_text(str(1 + int(globalScript.fullGameTime - globalScript.timer))) # Set timer label
+		get_node("Control/HUD/VBoxContainer/Time").set_text(str(1 + int(globalScript.fullGameTime - globalScript.timer))) # Set timer label
 		
 		update_scores(false)
 	
@@ -212,14 +192,10 @@ func _on_quit_game_pressed_gameover() -> void:
 	get_tree().quit()
 
 func set_playerCount():
-	if globalScript.playerInputs[1] == 0:
-		globalScript.playerCount = 1
-	elif globalScript.playerInputs[2] == 0:
-		globalScript.playerCount = 2
-	elif globalScript.playerInputs[3] == 0:
-		globalScript.playerCount = 3
-	else:
-		globalScript.playerCount = 4
+	for i in range(4):
+		if globalScript.playerInputs[i+1] == 0:
+			globalScript.playerCount = i+1
+			break
 
 func _on_play_again_pressed() -> void:
 	

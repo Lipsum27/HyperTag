@@ -3,50 +3,51 @@
 [ext_resource type="FontFile" uid="uid://c8ip11ho7rpv8" path="res://Assets/fonts/PixelOperator8.ttf" id="1_hipts"]
 [ext_resource type="FontFile" uid="uid://cuyigfdom0xgu" path="res://Assets/fonts/PixelOperator8-Bold.ttf" id="2_hq6bv"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ce3w2"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ilbhy"]
 content_margin_left = 4.0
 content_margin_top = 4.0
 content_margin_right = 4.0
 content_margin_bottom = 4.0
-bg_color = Color(0.1, 0.1, 0.1, 0.3)
+draw_center = false
 corner_radius_top_left = 3
 corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 corner_detail = 5
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ce3w2"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_q6ug4"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_opfnp"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y6nni"]
 content_margin_left = 4.0
 content_margin_top = 4.0
 content_margin_right = 4.0
 content_margin_bottom = 4.0
 bg_color = Color(0.225, 0.225, 0.225, 0.6)
+draw_center = false
 corner_radius_top_left = 3
 corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 corner_detail = 5
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cp0ys"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xf4r5"]
 content_margin_left = 4.0
 content_margin_top = 4.0
 content_margin_right = 4.0
 content_margin_bottom = 4.0
-bg_color = Color(0.1, 0.1, 0.1, 0.6)
+draw_center = false
 corner_radius_top_left = 3
 corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 corner_detail = 5
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yhxw7"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o74p3"]
 content_margin_left = 4.0
 content_margin_top = 4.0
 content_margin_right = 4.0
 content_margin_bottom = 4.0
-bg_color = Color(0, 0, 0, 0.6)
+draw_center = false
 corner_radius_top_left = 3
 corner_radius_top_right = 3
 corner_radius_bottom_right = 3
@@ -93,11 +94,11 @@ Button/constants/icon_max_width = 0
 Button/constants/outline_size = 35
 Button/font_sizes/font_size = 48
 Button/fonts/font = ExtResource("1_hipts")
-Button/styles/disabled = SubResource("StyleBoxFlat_ce3w2")
-Button/styles/focus = SubResource("StyleBoxEmpty_ce3w2")
-Button/styles/hover = SubResource("StyleBoxFlat_opfnp")
-Button/styles/normal = SubResource("StyleBoxFlat_cp0ys")
-Button/styles/pressed = SubResource("StyleBoxFlat_yhxw7")
+Button/styles/disabled = SubResource("StyleBoxFlat_ilbhy")
+Button/styles/focus = SubResource("StyleBoxEmpty_q6ug4")
+Button/styles/hover = SubResource("StyleBoxFlat_y6nni")
+Button/styles/normal = SubResource("StyleBoxFlat_xf4r5")
+Button/styles/pressed = SubResource("StyleBoxFlat_o74p3")
 HSlider/styles/grabber_area = SubResource("StyleBoxFlat_pjfek")
 HSlider/styles/slider = SubResource("StyleBoxLine_2mx7n")
 Label/colors/font_color = Color(0.36862746, 0.4862745, 0.65882355, 1)
