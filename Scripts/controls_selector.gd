@@ -11,14 +11,10 @@ func _physics_process(_delta):
 	if globalScript.playerInputs[ID] == 0:
 		selector.modulate = Color.from_hsv(0.0, 0.0, 1.0, 0.196)
 	else:
-		if ID == 0:
-			selector.modulate = Color.from_hsv(0.0, 0.5, 1.0, 1.0)
-		elif ID == 1:
-			selector.modulate = Color.from_hsv(0.169, 0.5, 1.0, 1.0)
-		elif ID == 2:
-			selector.modulate = Color.from_hsv(0.326, 0.5, 1.0, 1.0)
-		elif ID == 3:
-			selector.modulate = Color.from_hsv(0.589, 0.5, 1.0, 1.0)
+		selector.modulate.h = globalScript.playerHues[ID]
+		selector.modulate.s = globalScript.playerSaturation
+		selector.modulate.v = 1.0
+		selector.modulate.a = 1.0
 
 func _on_button_pressed() -> void:
 	for i in range(globalScript.playerInputs.size()): # Loop through playerInputs

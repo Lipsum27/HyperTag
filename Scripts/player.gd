@@ -1,6 +1,5 @@
 extends CharacterBody2D
 
-#region onready
 @onready var animated_sprite_2d = $AnimatedSprite2D
 @onready var run_particles = $Run
 @onready var slam_particles = $Slam
@@ -8,9 +7,7 @@ extends CharacterBody2D
 @onready var dash_particles = $Dash
 @onready var slide_particles = $Slide
 @onready var tag_particles = $Tag
-#endregion
 
-#region variables
 @export var player_ID = 1
 
 var speed:float
@@ -51,7 +48,7 @@ var midairDash = 0
 var instantSlide:bool
 var roundEndBuffer:int = 5
 var flickerSpeed = 8
-#endregion
+var saturation = 0.5
 
 func _ready(): # setup
 	if player_ID > globalScript.playerCount:
@@ -141,14 +138,11 @@ func _physics_process(delta): # main loop
 	
 	run_particles.emitting = false
 	
-#region CoyoteTime 
 	if is_on_floor():
 		coyoteTime = fullCoyoteTime
 	else:
 		coyoteTime -= delta
-#endregion
-
-#region MidairDash / WallJump / DoubleJump
+	
 	midairDash -= delta
 	
 	# reset jumps on slide
@@ -190,9 +184,7 @@ func _physics_process(delta): # main loop
 				currentlySlamming = false
 				currentAirJumps = currentAirJumps - 1
 				midairDash = .3
-#endregion
 	
-#region Jump / slam
 	if coyoteTime > 0:
 		if player_ID == 1 && globalScript.p1PowerUp[0]> 0:
 			currentAirJumps = midairJumps + midairJumps_bonus
@@ -229,9 +221,7 @@ func _physics_process(delta): # main loop
 	
 	if slamJumpDraining:
 		slamJumpTime -= delta
-#endregion
 	
-#region Slide
 	if coyoteTime > 0:
 		if instantSlide == true: #instant slide, only works if first tick on floor
 			if Input.is_action_pressed("Down_" + str(globalScript.playerInputs[player_ID-1])):
@@ -251,9 +241,7 @@ func _physics_process(delta): # main loop
 		instantSlide = false
 	else:
 		instantSlide = true
-	#endregion
 	
-#region HorizontalMovement
 	if is_on_floor():
 		var horizontalDirection = (Input.get_axis("Left_" + str(globalScript.playerInputs[player_ID-1]),"Right_" + str(globalScript.playerInputs[player_ID-1]))) * floorSpeedMultiplier
 		velocity.x = ((velocity.x + (speed * taggerMovementVariance * horizontalDirection)) / friction)
@@ -264,9 +252,7 @@ func _physics_process(delta): # main loop
 		velocity.y = velocity.y * wallSlideSpeedMultiplier
 	if abs(velocity.x) > XMaxSpeed:
 		velocity.x = (velocity.x / abs(velocity.x)) * XMaxSpeed
-#endregion
 	
-#region Animations
 	
 	if velocity.x > 0:
 		animated_sprite_2d.flip_h = false
@@ -293,36 +279,22 @@ func _physics_process(delta): # main loop
 			animated_sprite_2d.play("Rise")
 		else:
 			animated_sprite_2d.play("Fall")
-#endregion
 	
-#region Broadcast
 	globalScript.playerPos[player_ID - 1] = position
 	globalScript.playerVel[player_ID - 1] = velocity
-#endregion
 	
-#region Colours
-	if player_ID == 1:
-		modulate = Color.from_hsv(0.0, 0.5, 1.0, 1.0)
-		if player_ID == globalScript.currentTagger:
-			modulate = Color.from_hsv(0.0, ((sin(globalScript.timer * flickerSpeed) + 1) / 4), 1.0, 1.0)
-	if player_ID == 2:
-		modulate = Color.from_hsv(0.169, 0.5, 1.0, 1.0)
-		if player_ID == globalScript.currentTagger:
-			modulate = Color.from_hsv(0.169, ((sin(globalScript.timer * flickerSpeed) + 1) / 4), 1.0, 1.0)
-	if player_ID == 3:
-		modulate = Color.from_hsv(0.326, 0.5, 1.0, 1.0)
-		if player_ID == globalScript.currentTagger:
-			modulate = Color.from_hsv(0.326, ((sin(globalScript.timer * flickerSpeed) + 1) / 4), 1.0, 1.0)
-	if player_ID == 4:
-		modulate = Color.from_hsv(0.589, 0.5, 1.0, 1.0)
-		if player_ID == globalScript.currentTagger:
-			modulate = Color.from_hsv(0.589, ((sin(globalScript.timer * flickerSpeed) + 1) / 4), 1.0, 1.0)
-#endregion
+	modulate.h = globalScript.playerHues[player_ID-1]
+	modulate.s = saturation
+	modulate.v = 1.0
 	
 	if globalScript.lastTagTime + globalScript.tagCooldown < globalScript.timer:
 		flickerSpeed = 8
 	else:
 		flickerSpeed = 24
+	if player_ID == globalScript.currentTagger:
+		saturation = ((sin(globalScript.timer * flickerSpeed) / 2 ) + 0.5) * ( globalScript.playerSaturation)
+	else:
+		saturation = globalScript.playerSaturation
 	
 	move_and_slide()
 

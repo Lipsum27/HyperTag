@@ -44,6 +44,15 @@ var vSync = false
 var tauntsEnabled = true
 var fadeHud = false
 
+const playerSaturation = 0.5
+
+var playerHues = [
+	0.0,
+	0.169,
+	0.326,
+	0.589
+]
+
 # Arrays
 var playerPos: Array[Vector2] = [
 	Vector2(0, 0),
