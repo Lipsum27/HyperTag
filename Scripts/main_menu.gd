@@ -2,9 +2,8 @@ extends Control
 
 const settingsScene = preload("res://Scenes/settings.tscn")
 @onready var gameModeDescription = $"UI/VBoxContainer/Interface/Game Mode/ScrollContainer/GameModeDescription"
-var typewriterBreak:bool
-var typewriterTickLength = 10
-var typewriterTickTime = 0.025
+var typewriterTickLength = 3
+var goalCharacters:int = 0
 
 func _ready():
 	if OS.has_feature("web"):
@@ -16,9 +15,8 @@ func _ready():
 func _process(_delta: float) -> void:
 	get_node("UI").visible = !globalScript.settingsVisible
 	get_node("UI/VBoxContainer/Interface/Game Mode/GameMode").text =  globalScript.gameModes[globalScript.currentGameMode]
-	if typewriterBreak == true:
-		await get_tree().create_timer(typewriterTickTime).timeout
-		typewriterBreak = false
+	if gameModeDescription.visible_characters != goalCharacters:
+		gameModeDescription.visible_characters += typewriterTickLength
 
 func set_playerCount():
 	if globalScript.playerInputs[1] == 0:
@@ -48,7 +46,6 @@ func _on_settings_pressed() -> void:
 	add_child(settingsMenu)
 
 func _on_game_mode_pressed() -> void:
-	typewriterBreak = true
 	if globalScript.currentGameMode != globalScript.gameModes.size() - 1:
 		globalScript.currentGameMode += 1
 	else:
@@ -56,12 +53,7 @@ func _on_game_mode_pressed() -> void:
 	typewriter_effect()
 
 func typewriter_effect():
-	while gameModeDescription.visible_characters > 0:
-		if gameModeDescription.visible_characters > typewriterTickLength:
-			gameModeDescription.visible_characters -= typewriterTickLength
-		else:
-			gameModeDescription.visible_characters = 0
-		await get_tree().create_timer(typewriterTickTime).timeout
+	gameModeDescription.visible_characters = 0
 	match globalScript.currentGameMode:
 		0:
 			gameModeDescription.set_text("-Flashing player is the tagger\n-Tag others\n-Avoid the tagger until the timer ends")
@@ -69,15 +61,4 @@ func typewriter_effect():
 			gameModeDescription.set_text("-Flashing player is the runner\n-Escape other players until the timer ends\n-Winner gets double points")
 		2:
 			gameModeDescription.set_text("-Flashing player is the tagger\n-Tag others\n-Shorter timer\n-Timer resets on tag\n-Avoid the tagger until the timer ends")
-	
-	var totalLength:int = gameModeDescription.text.length()
-
-	@warning_ignore("integer_division")
-	for i in range(1 + int(totalLength/typewriterTickLength)):
-		if gameModeDescription.visible_characters+typewriterTickLength > totalLength:
-			gameModeDescription.visible_characters = totalLength
-		else:
-			gameModeDescription.visible_characters += typewriterTickLength
-		if typewriterBreak:
-			break
-		await get_tree().create_timer(typewriterTickTime).timeout
+	goalCharacters = gameModeDescription.text.length()
